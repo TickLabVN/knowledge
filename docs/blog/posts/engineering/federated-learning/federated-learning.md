@@ -12,7 +12,7 @@ toc_depth: 3
 
 <figure markdown>
 
-![](./images/hero.png){ width="1100" }
+![](./images/hero.png)
 
 </figure>
 
