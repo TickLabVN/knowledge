@@ -16,6 +16,8 @@ Ledis leverages vanilla JavaScript and HTML, requiring no external server or bui
 
 **Explore the demo:** [Ledis](https://ledis-five.vercel.app)
 
+<!-- more -->
+
 ## I. Research phase
 
 ### 1. Research about Redis
@@ -30,44 +32,44 @@ Next, I investigated existing libraries that provide a command-line interface fo
 
 ### 1. Class diagram
 
-![image.png](./images/classDiagram.png) { width="800" }
+![image.png](./images/classDiagram.png)
 
 **Description for class diagram:**
 
 - **UI Layer**
 
-  - `getCommand()` reads user input and forwards parsed commands to Ledis.
+    - `getCommand()` reads user input and forwards parsed commands to Ledis.
 
 - **Ledis Core**
 
-  - **Attributes:**
+    - **Attributes:**
 
-    - `commands`: map of command names to handlers
-    - `data`: key→Entry store
-    - `clone{data,timestamp}`: snapshot for persistence
+        - `commands`: map of command names to handlers
+        - `data`: key→Entry store
+        - `clone{data,timestamp}`: snapshot for persistence
 
-  - **Methods:**
+    - **Methods:**
 
-    - `registerCommand()`
-    - `execute(cmd)`
-    - `set/get/removeEntry()`
-    - `getAllKeys()`
-    - `save()/loadData()/restore()`
-    - `garbageCollector()` for expired-key cleanup
+        - `registerCommand()`
+        - `execute(cmd)`
+        - `set/get/removeEntry()`
+        - `getAllKeys()`
+        - `save()/loadData()/restore()`
+        - `garbageCollector()` for expired-key cleanup
 
 - **Data-Type Modules**
 
-  - **String:** `set(key,value)`, `get(key)`
-  - **Set:** `sadd(key,valueList)`, `smembers(key)`, `srem(key,valueList)`, `sinter(listKey)`
-  - **Key:** `keys()`, `del(key)`, `expire(key,seconds)`, `ttl(key)`
+    - **String:** `set(key,value)`, `get(key)`
+    - **Set:** `sadd(key,valueList)`, `smembers(key)`, `srem(key,valueList)`, `sinter(listKey)`
+    - **Key:** `keys()`, `del(key)`, `expire(key,seconds)`, `ttl(key)`
 
 - **Entry**
-  Wraps a value with type, `expireAt` timestamp
+    - Wraps a value with type, `expireAt` timestamp
 
-  - Methods: `isExpired()`, `getTTL()`, `setExpireAt()`
+    - Methods: `isExpired()`, `getTTL()`, `setExpireAt()`
 
 - **Response**
-  Encodes command results as `ok()`, `integer()`, `string()`, `array()`, `emptyArray()`, or `nil()`
+    - Encodes command results as `ok()`, `integer()`, `string()`, `array()`, `emptyArray()`, or `nil()`
 
 ### 2. Sequence diagram
 
@@ -394,7 +396,7 @@ Each suite includes both typical and edge-case scenarios to ensure robustness. (
 ### 3. Results
 
 - Live demo: [https://ledis-five.vercel.app](https://ledis-five.vercel.app)
-- GitHub: [https://github.com/ThaiNguyenGiaBao/Ledis](https://github.com/ThaiNguyenGiaBao/Ledis)
+- Github: [https://github.com/ThaiNguyenGiaBao/Ledis](https://github.com/ThaiNguyenGiaBao/Ledis)
 - The code follows SOLID principles, making it easy to extend and maintain.
 - Fully implements all required lightweight Redis features.
 - Various performance improvements were applied (see the "Optimization Phase" section).
