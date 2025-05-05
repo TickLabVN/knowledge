@@ -1,0 +1,2009 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Summary of knowledge-sharing content during the research and project development process across departments at TickLab.">
+      
+      
+        <meta name="author" content="TickLab Viet Nam">
+      
+      
+        <link rel="canonical" href="https://ticklabvn.github.io/knowledge/blog/edge-detection/">
+      
+      
+      
+        <link rel="next" href="../git-workflow-in-practice/">
+      
+      
+      <link rel="icon" href="../../assets/TickLab-logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Edge detection - TickLab - Start here, go anywhere</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<link rel="stylesheet" href="../../assets/stylesheets/custom.00c04c01.min.css">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#edge-detection" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TickLab - Start here, go anywhere" class="md-header__button md-logo" aria-label="TickLab - Start here, go anywhere" data-md-component="logo">
+      
+  <img src="../../assets/TickLab-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TickLab - Start here, go anywhere
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Edge detection
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TickLabVN/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TickLabVN/knowledge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../challenges/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Challenges
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TickLab - Start here, go anywhere" class="md-nav__button md-logo" aria-label="TickLab - Start here, go anywhere" data-md-component="logo">
+      
+  <img src="../../assets/TickLab-logo.svg" alt="logo">
+
+    </a>
+    TickLab - Start here, go anywhere
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TickLabVN/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TickLabVN/knowledge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2023
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../category/engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../category/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Research
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../challenges/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Challenges
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Challenges
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Engineering (CS)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Engineering (CS)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../challenges/csv-query-tool/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CSV Query Tool
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            CSV Query Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/language-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Language description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1_3" id="__nav_3_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Timelines
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Timelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week3_n_week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3 &amp; Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/personal-finance-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Personal Finance App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/json-in-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JSON in C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#1-mot-vai-khai-niem" class="md-nav__link">
+      <span class="md-ellipsis">
+        1. Một vài khái niệm
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#2-phuong-phap-ao-ham-cap-mot-cho-bai-toan-nhan-dien-canh" class="md-nav__link">
+      <span class="md-ellipsis">
+        2. Phương pháp đạo hàm cấp một cho bài toán nhận diện cạnh
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#3-cac-buoc-cua-mot-thuat-toan-nhan-dien-canh" class="md-nav__link">
+      <span class="md-ellipsis">
+        3. Các bước của một thuật toán nhận diện cạnh
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#4-phuong-phap-ao-ham-cap-hai-cho-bai-toan-nhan-dien-canh" class="md-nav__link">
+      <span class="md-ellipsis">
+        4. Phương pháp đạo hàm cấp hai cho bài toán nhận diện cạnh
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#5-phuong-phap-tim-canh-tren-anh-nhieu" class="md-nav__link">
+      <span class="md-ellipsis">
+        5. Phương pháp tìm cạnh trên ảnh nhiễu
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#6-canny-edge-detector" class="md-nav__link">
+      <span class="md-ellipsis">
+        6. Canny Edge Detector
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#7-ket-luan" class="md-nav__link">
+      <span class="md-ellipsis">
+        7. Kết luận
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#8-tham-khao" class="md-nav__link">
+      <span class="md-ellipsis">
+        8. Tham khảo
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+<div class="md-content md-content--post" data-md-component="content">
+
+    <!-- Sidebar -->
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+        <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner md-post">
+                <nav class="md-nav md-nav--primary">
+
+                    <!-- Back to overview link -->
+                    <div class="md-post__back">
+                        <div class="md-nav__title md-nav__container">
+                            <a href="../" class=" md-nav__link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                                <span class="md-ellipsis">
+                                    Back to index
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Post authors -->
+                    
+                    <div class="md-post__authors md-typeset">
+                        
+                        <div class="md-profile md-post__profile">
+                            <span class="md-author md-author--long">
+                                <a href="https://github.com/baotram153">
+                                    <img src="https://avatars.githubusercontent.com/u/56596545?v=4" alt="Đặng Ngọc Bảo Trâm" />
+                                    </a>
+                            </span>
+                            <span class="md-profile__description">
+                                <strong>
+                                    <a href="https://github.com/baotram153">
+                                        Đặng Ngọc Bảo Trâm
+                                        </a>
+                                </strong><br />
+                                Scientific researcher
+                            </span>
+                        </div>
+                        
+                    </div>
+                    
+
+                    <!-- Post metadata -->
+                    <ul class="md-post__meta md-nav__list">
+                        <li class="md-nav__item md-nav__item--section">
+                            <div class="md-post__title">
+                                <span class="md-ellipsis">
+                                    Metadata
+                                </span>
+                            </div>
+                            <nav class="md-nav">
+                                <ul class="md-nav__list">
+
+                                    <!-- Post date -->
+                                    <li class="md-nav__item">
+                                        <div class="md-nav__link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                                            <time datetime="2023-07-24 00:00:00+00:00" class="md-ellipsis">July 24, 2023</time>
+                                        </div>
+                                    </li>
+
+                                    <!-- Post date updated -->
+                                    
+
+                                    <!-- Post categories -->
+                                    
+                                    <li class="md-nav__item">
+                                        <div class="md-nav__link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                                            <span class="md-ellipsis">
+                                                in
+                                                
+                                                <a href="../category/research/">Research</a></span>
+                                        </div>
+                                    </li>
+                                    
+
+                                    <!-- Post readtime -->
+                                    
+                                    
+                                    <li class="md-nav__item">
+                                        <div class="md-nav__link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                                            <span class="md-ellipsis">
+                                                
+                                                29 min read
+                                                
+                                            </span>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </nav>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Table of contents, if integrated -->
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Page content -->
+    <article class="md-content__inner md-typeset">
+        
+        
+  
+
+
+
+  
+  
+
+
+<h1 id="edge-detection">Edge detection<a class="headerlink" href="#edge-detection" title="Permanent link">&para;</a></h1>
+<style>
+.md-typeset h4 {
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-size: 1.25em;
+    line-height: 1.5;
+    margin: 1.6em 0 .8em
+}
+</style>
+
+<figure>
+<p><img alt="edge_detection-intro" src="../research/edge-detection/images/edge_detection-intro.png" width="300" /></p>
+</figure>
+<p>Trong giai đoạn đầu của quá trình xử lý ảnh, chúng ta mong muốn đúc kết ra những thông tin về cấu trúc cũng như tính chất của các vật thể trong ảnh. Để làm được điều này, việc tìm ra những đặc trưng cơ bản (feature) của các vật thể này là cần thiết. Cạnh (edge) là một trong những đặc trưng này. <!-- more --> Chúng ta cùng quan sát hai bức ảnh sau:</p>
+<figure>
+<p><img alt="Henry_Moore_The_Archer_sketch" src="../research/edge-detection/images/Henry_Moore_The_Archer_sketch.png" width="500" />
+  </p>
+<figcaption>
+<p>Hình 1: Bên trái: Ảnh chụp bức tượng The Archer của Henry Moore (1964). Bên phải: Bản phác thảo của bức tượng này. Ảnh tham khảo từ <a href="#ref_4">[4]</a>.
+  </p>
+</figcaption>
+</figure>
+<p>Tuy đã giản lược rất nhiều chi tiết và chỉ lưu lại những đường nét nổi bật nhất, bức ảnh bên phải vẫn bảo toàn được một lượng thông tin đủ để giúp ta hình dung được một cách dễ dàng kết cấu và một vài đặc điểm nhất định của vật thể trong bức ảnh gốc. Do vậy, nhận diện cạnh thường là một trong những bước đầu tiên của quá trình khôi phục thông tin từ một bức ảnh. Cũng bởi vai trò quan trọng này nên bài toán nhận diện cạnh vẫn tiếp tục là một lĩnh vực được nghiên cứu được quan tâm rộng rãi. Trong bài viết này, chúng ta sẽ cùng nhau tìm hiểu những khái niệm cơ bản liên quan đến bài toán nhận diện cạnh, các vấn đề thường gặp trong bài toán này cũng như những thuật toán nhận diện cạnh thông dụng.</p>
+<h2 id="1-mot-vai-khai-niem">1. Một vài khái niệm<a class="headerlink" href="#1-mot-vai-khai-niem" title="Permanent link">&para;</a></h2>
+<h4 id="11-anh-trang-en-grayscale-image">1.1. Ảnh trắng đen (grayscale image)<a class="headerlink" href="#11-anh-trang-en-grayscale-image" title="Permanent link">&para;</a></h4>
+<p>Bài viết này chỉ sử dụng ảnh grayscale làm minh họa cho bài toán nhận diện cạnh. Ảnh grayscale được sử dụng có giá trị pixel dao động trong khoảng từ 0 đến 255 với 0 là màu đen và 255 là màu trắng, các giá trị ở giữa là những sắc thái xám khác nhau được pha trộn theo một tỉ lệ nhất định hai màu đen và trắng này. Các giá trị của pixel được gọi là mức độ xám (gray level), giá trị này trong một số tài liệu cũng được gọi là cường độ ảnh (image intensity) hay cường độ (intensity).</p>
+<figure>
+<p><img alt="Grayscale_Color_Spectrum" src="../research/edge-detection/images/Grayscale_Color_Spectrum.png" width="500" />
+  </p>
+<figcaption>
+<p>Hình 2: Dãy màu cho ảnh grayscale (để ý rằng giá trị của pixel càng thấp có màu ngả sang đen nhiều hơn và ngược lại). Ảnh tham khảo <a href="https://cs.calvin.edu/activities/connect/CompRenew/03programming/01programming.html">tại đây</a>.
+  </p>
+</figcaption>
+</figure>
+<h4 id="12-cach-anh-chi-so-cac-pixel">1.2. Cách đánh chỉ số các pixel<a class="headerlink" href="#12-cach-anh-chi-so-cac-pixel" title="Permanent link">&para;</a></h4>
+<p>Trong mặt phẳng ảnh, ta thường đặt gốc tọa độ ở trung tâm, tia Ox hướng từ trái sang phải và tia Oy hướng từ dưới lên trên. Tuy nhiên khi số hóa thì bức ảnh được biểu diễn bằng một mảng 2 chiều, trong đó mỗi phần tử lưu giá trị của pixel ở vị trí tương ứng. Lưu ý rằng để làm việc với một bức ảnh, ta cần chuyển bức ảnh này thành dạng số, lúc này bức ảnh không còn giữ được tính "liên tục" của nó nữa mà bị "lượng hóa" (quantized) thành các đơn vị nhỏ gọi là các pixel. Thông thường người ta đánh chỉ số các pixel như sau: mỗi pixel có chỉ số <span class="arithmatex">\([i,j]\)</span>, trong đó <span class="arithmatex">\(i\)</span> tăng dần từ trái sang phải, <span class="arithmatex">\(j\)</span> tăng dần từ trên xuống dưới, pixel trên cùng bên trái có chỉ số <span class="arithmatex">\([0,0]\)</span>.</p>
+<figure>
+<p><img alt="Pixel_Indexing" src="../research/edge-detection/images/Pixel_Indexing.png" width="500" />
+  </p>
+<figcaption>
+<p>Hình 3: Một điểm trên mặt phẳng ảnh và pixel tương ứng biểu diễn điểm ảnh ấy (lưu ý rằng nhiều điểm ảnh có thể được biểu diễn bởi một pixel duy nhất). Ảnh tham khảo từ <a href="#ref_1">[1]</a>.
+  </p>
+</figcaption>
+</figure>
+<h4 id="13-phep-tich-chap-convolution">1.3. Phép tích chập (convolution)<a class="headerlink" href="#13-phep-tich-chap-convolution" title="Permanent link">&para;</a></h4>
+<p>Phép tích chập có quan hệ mật thiết đến phép tương quan chéo (cross correlation). Trong phép tương quan chéo, ta có một hạt nhân (kernel) với một phần tử trung tâm (center) và một mảng đầu vào, lần lượt trượt kernel từ góc trên cùng bên trái của mảng đầu vào theo chiều từ trái sang phải, từ trên xuống dưới. Tại mỗi phần tử của mảng đầu vào mà trung tâm kernel này trượt đến, giá trị của phần tử này được tính bằng cách nhân giá trị mỗi phần tử trong kernel với giá trị phần tử tại vị trí tương ứng của mảng đầu vào, rồi lấy tổng các giá trị này <a href="#ref_3">[3]</a>. Trong phép tích chập, ta cần xoay kernel 180 độ trước khi thực hiện quá trình trên. Bạn đọc có thể tìm hiểu kĩ hơn về khái niệm này qua bài viết <a href="https://ticklab.vn/newest-tutorial/cse/mtcntt-chiasekienthuc/m-ng-no-ron-tich-ch-p-convolutional-neural-network-cnn-convnet"><strong>Mạng nơ-ron tích chập - Convolutional Neural Network (CNN/ConvNet)</strong></a>, phần 2.1 viết về Lớp tích chập (Convolutional layer).</p>
+<p>Ở những phần tiếp theo có sử dụng phép tích chập, ta mặc định rằng các kernel sử dụng đã được xoay 180 độ.</p>
+<h4 id="14-canh-va-cac-nguyen-nhan-tao-thanh-canh">1.4. Cạnh và các nguyên nhân tạo thành cạnh<a class="headerlink" href="#14-canh-va-cac-nguyen-nhan-tao-thanh-canh" title="Permanent link">&para;</a></h4>
+<p>Cạnh được định nghĩa là sự thay đổi cường độ ảnh một cách đột ngột và đáng kể.</p>
+<figure>
+<p><img alt="Connecting_Rod_Edge_Checking_ver2" src="../research/edge-detection/images/Connecting_Rod_Edge_Checking_ver2.png" width="500" />
+  </p>
+<figcaption>
+<p>Hình 4: Hình a: Ảnh của đầu một thanh truyền. Hình b: Đồ thị biểu diễn mức độ xám của mỗi pixel trong dãy pixel nằm trên đường màu đỏ. Ảnh tham khảo từ <a href="#ref_1">[1]</a>.
+  </p>
+</figcaption>
+</figure>
+<p>Dựa vào đồ thị, ta thấy rằng mức độ xám của pixel trong những <em><strong>ô màu xanh lam</strong></em> có sự thay đổi đột ngột nhưng không đáng kể. Chỉ có mức độ xám của các pixel trong các <em><strong>ô màu xanh lục</strong></em> là thay đổi vừa đáng kể, vừa đột ngột. Do vậy, chỉ có những sự thay đổi trong các ô màu xanh lục mới được nhận diện là cạnh (lưu ý rằng trong đồ thị có nhiều chỗ biễu diễn cạnh, mình chỉ lấy ví dụ ở hai chỗ), còn sự thay đổi ở những ô màu xanh lam chỉ là nhiễu (noise).</p>
+<p>Với định nghĩa này, ta thấy rằng cạnh tạo ra dựa trên sự thay đổi của cường độ ảnh không nhất thiết phải tương ứng với cạnh thực tế của vật thể. Vậy thì các cạnh này thường được tạo thành do đâu?</p>
+<p>Bốn nguyên nhân phổ biến tạo nên cạnh là:</p>
+<ul>
+<li>Sự không liên tục về độ sâu (Depth discontinuity): Giữa hai vật thể (một ở trước và một ở sau) hoặc giữa vật thể và nền khả năng cao sẽ có một sự đứt đoạn, sự đứt đoạn đó hình thành một cạnh.</li>
+<li>Sự không liên tục về định hướng bề mặt (Surface normal discontinuity): Tuy nằm trên cùng một vật thể và có cùng một chất liệu nhưng sự định hướng khác nhau của các bề mặt dẫn đến ánh sáng mỗi bề mặt nhận được từ nguồn sáng khác nhau nên giữa các bề mặt ấy hình thành cạnh.</li>
+<li>Sự không liên tục về độ phản xạ của bề mặt (Surface reflectance discontinuity): Nếu một vật thể được làm từ nhiều chất liệu khác nhau thì khả năng cao là ở những chỗ giao nhau giữa các chất liệu ấy sẽ hình thành cạnh do sự phản xạ ánh sáng của mỗi chất liệu là khác nhau.</li>
+<li>Sự không liên tục về ánh sáng (Illumination discontinuity): Trong nhiều trường hợp, vật thể sẽ ngăn một lượng ánh sáng nhất định, tạo thành bóng. Sự thay đổi đột ngột về mức độ xám của pixel giữa vùng bị hắt bóng và vùng không bị hắt bóng dẫn đến việc tạo thành cạnh giữa hai vùng này.</li>
+</ul>
+<p>Hình dưới đây giúp bạn đọc hình dung rõ hơn về các nguyên nhân này:</p>
+<figure>
+<p><img alt="Causes_of_edge" src="../research/edge-detection/images/Causes_of_edge.png" width="500" />
+  </p>
+<figcaption>
+<p>Hình 5: Các nguyên nhân tạo thành cạnh (các đường <span style="color:blue"><strong>màu xanh lam</strong></span> là những cạnh tạo thành do sự không liên tục về định hướng bề mặt, các đường <span style="color:yellow"><strong>màu vàng</strong></span> là những cạnh tạo thành do sự không liên tục về độ phản xạ của bề mặt, các đường <span style="color:green"><strong>màu xanh lục</strong></span> là những cạnh tạo thành do sự không liên tục về ánh sáng, các đường <span style="color:red"><strong>màu đỏ</strong></span> là những cạnh tạo thành do sự không liên tục về độ sâu). Ảnh tham khảo <a href="https://arxiv.org/pdf/2108.00616v1.pdf">tại đây</a>.
+  </p>
+</figcaption>
+</figure>
+<h4 id="15-cac-khai-niem-khac">1.5. Các khái niệm khác:<a class="headerlink" href="#15-cac-khai-niem-khac" title="Permanent link">&para;</a></h4>
+<p>Ngoài những khái niệm trên thì có một vài khái niệm mà mình cho rằng sẽ cần thiết cho bạn đọc ở những phần sau:</p>
+<ul>
+<li>Điểm cạnh (edge point): là một điểm trong ảnh có tọa độ <span class="arithmatex">\([i,j]\)</span> mà ở đó xảy ra sự thay đổi đột ngột và đáng kể về cường độ ảnh.</li>
+<li>Đường biên (contour): Một tập các điểm cạnh đã được sắp xếp thứ tự hoặc một đường cong biểu diễn tập các điểm cạnh ấy.</li>
+<li>Tập các điểm cạnh đã được nhận diện có thể chia làm hai: tập các cạnh đúng (correct edges) và tập các cạnh sai (false edges), tập các cạnh sai này còn được gọi là false positives, nó tương ứng với những điểm không phải là cạnh trong ảnh gốc. Ngoài ra còn một tập cạnh thứ ba, là những cạnh lẽ ra phải được nhận diện là cạnh, nhưng bị bỏ qua bởi thuật toán, tập này được gọi là false negatives.</li>
+</ul>
+<h2 id="2-phuong-phap-ao-ham-cap-mot-cho-bai-toan-nhan-dien-canh">2. Phương pháp đạo hàm cấp một cho bài toán nhận diện cạnh<a class="headerlink" href="#2-phuong-phap-ao-ham-cap-mot-cho-bai-toan-nhan-dien-canh" title="Permanent link">&para;</a></h2>
+<p>Ở trên chúng ta đã có định nghĩa về cạnh, là sự thay đổi đột ngột và đáng kể về mức độ xám của các pixel trong ảnh. Sự thay đổi ấy nhắc ta nhớ đến khái niệm gì trong toán học nhỉ? Đúng rồi, là đạo hàm! Chúng ta cùng nhau quan sát bức hình dưới đây:</p>
+<figure>
+<p><img alt="First_Derivative" src="../research/edge-detection/images/First_Derivative.png" width="500" />
+  </p>
+<figcaption>
+<p>Hình 6: Hình 1: Dãy các pixel được xét. Hình 2: Đồ thị biểu diễn mức độ xám của mỗi pixel trong dãy. Hình 3: Đạo hàm cấp một của hàm số biểu diễn bởi đồ thị thứ nhất. Ảnh tham khảo <a href="http://www.cs.toronto.edu/~fidler/slides/2015/CSC420/lecture3.pdf">tại đây</a>.
+  </p>
+</figcaption>
+</figure>
+<p>Trong bức ảnh trên, ta không xét toàn bộ ảnh mà chỉ xét dãy các pixel nằm trên đường kẻ màu đỏ (xem bức ảnh có 1 chiều). Ở đồ thị thứ nhất, ta nhận thấy có hai chỗ mức độ xám thay đổi đột ngột, tương ứng với hai lần các pixel trên đường kẻ màu đỏ chuyển màu từ trắng sang đen và từ đen sang trắng, đó cũng chính là vị trí của hai cạnh. Đồ thị thứ hai biểu diễn đạo hàm cấp một của hàm số biểu diễn bởi đồ thị thứ nhất. Đến đây nếu như bạn thắc mắc rằng: những giá trị của các pixel là rời rạc, thế thì vì sao lại có đạo hàm? Ở đây, chúng ta xem như giá trị của dãy các pixel nằm trên đường màu đỏ được mô tả bởi một hàm số, và bởi vì hàm số này liên tục nên nó có đạo hàm. Trên thực tế, ta không cần phải mô hình hóa giá trị của các pixel bởi một hàm số mà có thể xấp xỉ đạo hàm của chúng một cách rời rạc. Bạn đọc sẽ được tìm hiểu kĩ hơn về cách xấp xỉ đạo hàm ở phần dưới.</p>
+<p>Trong không gian 2 chiều thì gradient tại một điểm là một vector</p>
+<div class="arithmatex">\[
+\boldsymbol{G}[f(x,y)] = \begin{bmatrix} G_x \\ G_y \end{bmatrix} = \begin{bmatrix} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{bmatrix}
+\]</div>
+<p>Trong đó <span class="arithmatex">\(f(x,y)\)</span> là hàm số biểu diễn giá trị của pixel tại vị trí <span class="arithmatex">\((x,y)\)</span></p>
+<ol>
+<li>
+<p>Hai tính chất quan trọng liên quan đến gradient tại một điểm: Hướng của gradient (gradient direction) là hướng mà mức độ xám pixel tăng nhanh nhất, được cho bởi công thức</p>
+<div class="arithmatex">\[
+\alpha(x,y) = \tan^{-1}\left( \frac{G_y}{G_x}\right) 
+\]</div>
+</li>
+<li>
+<p>Độ lớn của gradient (gradient magnitude), được cho bởi công thức</p>
+<div class="arithmatex">\[
+G[f(x,y)] = \sqrt{G_x^2 + G_y^2} 
+\]</div>
+<p>Độ lớn này được tính theo chuẩn 2 (norm 2). Trên thực tế, để dễ tính toán thì người ta thường ước lượng độ lớn dựa theo chuẩn 1</p>
+<div class="arithmatex">\[
+G[f(x,y)] = |G_x| + |G_y|
+\]</div>
+<p>hoặc chuẩn vô cùng</p>
+<div class="arithmatex">\[
+G[f(x,y)] = \max\{|G_x|, |G_y|\}
+\]</div>
+</li>
+</ol>
+<h4 id="21-xap-xi-ao-ham">2.1. Xấp xỉ đạo hàm<a class="headerlink" href="#21-xap-xi-ao-ham" title="Permanent link">&para;</a></h4>
+<p>Trong ảnh số, do giá trị pixel là rời rạc nên đạo hàm thường được tính bởi sự sai khác giữa giá trị của các pixel gần nhau. Một cách tự nhiên ta nghĩ đến việc xấp xỉ đạo hàm như sau (nhớ rằng hướng tăng của <span class="arithmatex">\(j\)</span> tương ứng với hướng <span class="arithmatex">\(Ox\)</span> và hướng tăng của <span class="arithmatex">\(i\)</span> tương ứng với hướng <span class="arithmatex">\(-Oy\)</span>):</p>
+<div class="arithmatex">\[
+G_x \approx f[i,j+1] - f[i,j]
+\]</div>
+<div class="arithmatex">\[
+G_y \approx f[i,j] - f[i+1, j]
+\]</div>
+<p>Cách xấp xỉ này được biểu diễn bởi 2 kernel tích chập sau</p>
+<div class="arithmatex">\[
+s_x = \begin{bmatrix} -1 &amp; 1\end{bmatrix} \qquad \qquad s_y = \begin{bmatrix} 1 \\ -1\end{bmatrix}
+\]</div>
+<p>Tuy nhiên một hạn chế của cách làm này đó là việc áp dụng công thức trên cho ta đạo hàm theo phương <span class="arithmatex">\(Ox\)</span> tại điểm <span class="arithmatex">\([i, j+\frac{1}{2}]\)</span> và đạo hàm theo phương <span class="arithmatex">\(Oy\)</span> tại điểm <span class="arithmatex">\([i+\frac{1}{2}, j]\)</span>. Để khắc phục tình trạng này, người ta thường sử dụng kernel <span class="arithmatex">\(2 \times 2\)</span> thay vì kernel <span class="arithmatex">\(2 \times 1\)</span> hay <span class="arithmatex">\(1 \times 2\)</span> như trên:</p>
+<div class="arithmatex">\[
+s_x = \begin{bmatrix} -1 &amp; 1 \\ -1 &amp; 1\end{bmatrix} \qquad \qquad s_y = \begin{bmatrix} 1 &amp; 1 \\ -1 &amp; -1\end{bmatrix}
+\]</div>
+<p>Việc áp dụng 2 kernel trên sẽ giúp ta xấp xỉ được đạo hàm tại điểm <span class="arithmatex">\([i+\frac{1}{2}, j + \frac{1}{2}]\)</span>, nhưng cách làm này vẫn có hạn chế: vì điểm được tính đạo hàm nằm ở giữa các pixel chứ không thuộc một pixel nào cả (điểm này còn được gọi là interpolation point, hay điểm nội suy). Một hướng tiếp cận mới được đưa ra: dùng kernel <span class="arithmatex">\(3 \times 3\)</span> (hay các kernel có số pixel ở mỗi chiều là một số lẻ) để xấp xỉ đạo hàm tại pixel trung tâm, đa phần các kernel (hay toán tử) phổ biến ngày nay đều sử dụng hướng tiếp cận này.</p>
+<h4 id="22-mot-so-toan-tu-pho-bien-su-dung-ao-ham-cap-mot">2.2. Một số toán tử phổ biến sử dụng đạo hàm cấp một<a class="headerlink" href="#22-mot-so-toan-tu-pho-bien-su-dung-ao-ham-cap-mot" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Toán tử Robert</p>
+<p>Toán tử Robert cho ta một công thức khá đơn giản để xấp xỉ gradient tại một điểm theo phương <span class="arithmatex">\(Ox\)</span> và <span class="arithmatex">\(Oy\)</span>:</p>
+<div class="arithmatex">\[
+G_x = f[i,j] - f[i+1,j+1]
+\]</div>
+<div class="arithmatex">\[
+G_y = f[i+1,j] - f[i,j+1]
+\]</div>
+<p>Hai giá trị <span class="arithmatex">\(G_x\)</span>, <span class="arithmatex">\(G_y\)</span> này được tính bởi 2 kernel <span class="arithmatex">\(2 \times 2\)</span> sau</p>
+<div class="arithmatex">\[
+s_x = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1\end{bmatrix} \qquad \qquad s_y = \begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0\end{bmatrix}
+\]</div>
+<p>Công thức tính đạo hàm của toán tử Robert khá đơn giản, đồng thời giá trị tính được thuộc về một điểm nội suy nằm giữa các pixel nên toán tử Robert hiếm khi được sử dụng trong thực tiễn.</p>
+</li>
+<li>
+<p>Toán tử Sobel</p>
+<p>Đối với toán tử Sobel, <span class="arithmatex">\(G_x\)</span>, <span class="arithmatex">\(G_y\)</span> được tính bởi 2 kernel <span class="arithmatex">\(3 \times 3\)</span> sau</p>
+<div class="arithmatex">\[
+s_x = \begin{bmatrix} -1 &amp; 0 &amp; 1 \\ -2 &amp; 0 &amp; 2 \\ -1 &amp; 0 &amp; 1\\ \end{bmatrix} \qquad \qquad s_y = \begin{bmatrix} 1 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ -1 &amp; -2 &amp; -1\\ \end{bmatrix}
+\]</div>
+<p>Ta có nhận xét rằng toán tử Sobel xấp xỉ được đạo hàm tại điểm nằm trong pixel trung tâm như đã nói ở trên, đồng thời toán tử này đặt trọng số cao cho những pixel nằm gần trung tâm hơn nên nó còn có tác dụng khử nhiễu. Vì vậy toán tử Sobel là một trong những toán tử dùng để tính gradient được sử dụng phổ biến nhất.</p>
+<p>Kết quả áp dụng toán tử Sobel:</p>
+<figure markdown>
+<p><img alt="Original_Grayscale" src="../research/edge-detection/images/Original_Grayscale.png" width="500" />
+    <figcaption markdown>
+    Hình 7: Ảnh gốc đã được chuyển sang dạng grayscale.
+    </figcaption>
+</figure></p>
+<figure markdown>
+<p><img alt="Sobel_Operator_result" src="../research/edge-detection/images/Sobel_Operator_result.png" width="700" />
+    <figcaption markdown>
+    Hình 8: Hình 1, 2: Kết quả thu được sau khi áp dụng 2 kernel <span class="arithmatex">\(s_x\)</span>, <span class="arithmatex">\(s_y\)</span> lên ảnh gốc. Hình 3: Kết quả thu được sau khi tính độ lớn gradient tại mỗi pixel trong ảnh. Hình 4: Kết quả thu được sau khi phân ngưỡng hình 3 với ngưỡng T = 100.
+    </figcaption>
+</figure></p>
+<p>Lưu ý rằng khi dùng kernel để tính đạo hàm tại mỗi pixel, giá trị thu được có thể là âm hoặc dương, để có thể biểu diễn kết quả này dưới dạng ảnh grayscale (ảnh mà giá trị các pixel nằm trong khoảng từ 0 đến 255), ta dùng một phép ánh xạ chuyển giá trị nhỏ nhất (lúc này là một số âm) thành 0 và giá trị lớn nhất thành 255. Vì vậy ta quan sát thấy bức ảnh thu được đa phần có màu xám vì đa số giá trị đạo hàm nằm ở khoảng giữa hai giá trị này, những đường màu đen là những vị trí mà tại đó giá trị đạo hàm đạt cực tiểu, những đường màu trắng là những vị trí mà tại đó giá trị đạo hàm đạt cực đại.</p>
+<p>Bức ảnh thứ ba biểu diễn độ lớn gradient tại mỗi pixel, thu được bằng cách lấy căn của tổng bình phương giá trị pixel tương ứng ở hai bức hình trên (lúc chưa scale). Bức ảnh cuối cùng là kết quả thu được sau khi phân ngưỡng bức ảnh thứ ba, các pixel được nhận diện là cạnh có màu trắng, ngược lại có màu đen (việc phân ngưỡng này sẽ được nói rõ hơn ở mục 3).</p>
+</li>
+<li>
+<p>Toán tử Prewitt</p>
+<p>Toán tử Prewitt giống với toán tử Sobel, ngoại trừ việc toán tử này không đặt trọng số cao cho những pixel nằm gần trung tâm, tức xem những pixel xung quanh có vai trò ngang bằng nhau trong việc quyết định đạo hàm tại điểm nằm trong pixel trung tâm. 2 kernel <span class="arithmatex">\(s_x\)</span> và <span class="arithmatex">\(s_y\)</span> của toán tử này có dạng như sau</p>
+<div class="arithmatex">\[
+s_x = \begin{bmatrix} -1 &amp; 0 &amp; 1 \\ -1 &amp; 0 &amp; 1 \\ -1 &amp; 0 &amp; 1\\ \end{bmatrix} \qquad \qquad s_y = \begin{bmatrix} 1 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ -1 &amp; -1 &amp; -1\\ \end{bmatrix}
+\]</div>
+</li>
+</ul>
+<h4 id="23-anh-huong-cua-o-lon-kernel-en-kha-nang-nhan-dien-canh">2.3. Ảnh hưởng của độ lớn kernel đến khả năng nhận diện cạnh<a class="headerlink" href="#23-anh-huong-cua-o-lon-kernel-en-kha-nang-nhan-dien-canh" title="Permanent link">&para;</a></h4>
+<p>Một kernel có kích thước nhỏ sẽ xác định được vị trí của cạnh với độ chính xác cao (good localization) nhưng kết quả tính toán được lại rất dễ bị ảnh hưởng bởi nhiễu (noise sensitive): ta chỉ sử dụng 4 hay 9 giá trị của các pixel lân cận để xấp xỉ đạo hàm, nếu như một trong những pixel này chứa nhiễu thì kết quả bị ảnh hưởng rất nhiều. Một kernel lớn sẽ giảm được ảnh hưởng của nhiễu, nhưng độ chính xác khi xác định vị trí của cạnh lại không cao (poor localization): giá trị đạo hàm xấp xỉ cho một pixel bị ảnh hưởng bởi những thông tin ở xa.</p>
+<h2 id="3-cac-buoc-cua-mot-thuat-toan-nhan-dien-canh">3. Các bước của một thuật toán nhận diện cạnh<a class="headerlink" href="#3-cac-buoc-cua-mot-thuat-toan-nhan-dien-canh" title="Permanent link">&para;</a></h2>
+<p><em><strong>Bước 1</strong></em>: Filtering (lọc nhiễu)</p>
+<p>Việc tính toán đạo hàm đối với các kernel nhỏ (<span class="arithmatex">\(2 \times 2\)</span>, <span class="arithmatex">\(3 \times 3\)</span>) rất dễ bị ảnh hưởng bởi nhiễu bởi nó chỉ dựa trên mức độ xám của 2 hay 3 pixel nằm kề nhau (mình sẽ nói rõ hơn ở phần dưới), chính vì vậy trước khi đi vào thuật toán chính thì lọc nhiễu là một bước không thể thiếu. Tuy nhiên cần lưu ý về mối tương quan giữa mức độ lọc nhiễu và độ sắc của cạnh: càng lọc được nhiều nhiễu thì cạnh sẽ càng mờ.</p>
+<p><em><strong>Bước 2</strong></em>: Enhancement</p>
+<p>Việc nhận diện cạnh không dựa trên giá trị mỗi pixel một cách riêng lẻ mà dựa trên mối tương quan của pixel đang xét với các pixel lân cận. Ở bước này, ta nhấn mạnh sự thay đổi mức độ xám giữa các pixel bằng cách biểu diễn mỗi pixel bằng độ lớn gradient tại điểm đó.</p>
+<p><em><strong>Bước 3</strong></em>: Detection (nhận diện cạnh)</p>
+<p>Sau bước 2, ta thu được một bức ảnh với giá trị mỗi pixel là độ lớn đạo của gradient tại pixel đó. Đây chưa phải là đầu ra mà chúng ta mong muốn. Như đã nói ở trên, những pixel có độ lớn gradient lớn thì mới là cạnh, còn những pixel mà tại đó có sự thay đổi đạo hàm nhưng không đáng kể thì chỉ là nhiễu. Vì vậy ta còn phải thực hiện thêm một bước nữa, đó là phân ngưỡng (thresholding). Sau bước này, ta sẽ thu được một bức ảnh với giá trị mỗi pixel là một giá trị nhị phân (0 nếu pixel không phải là cạnh và 1 nếu pixel là cạnh).</p>
+<h2 id="4-phuong-phap-ao-ham-cap-hai-cho-bai-toan-nhan-dien-canh">4. Phương pháp đạo hàm cấp hai cho bài toán nhận diện cạnh<a class="headerlink" href="#4-phuong-phap-ao-ham-cap-hai-cho-bai-toan-nhan-dien-canh" title="Permanent link">&para;</a></h2>
+<p>Ở phương pháp trên, ta tính độ lớn gradient tại mỗi pixel rồi dùng một ngưỡng để xác định một pixel có phải là một cạnh hay không, dẫn đến việc có quá nhiều pixel được nhận diện là cạnh. Để khắc phục hạn chế này, một cách tiếp cận khác là đối với nhiều điểm cạnh nằm kề nhau, ta chỉ nhận những pixel có độ lớn gradient đạt cực đại cục bộ (local maxima). Ta cũng biết rằng, giá trị cực đại của đạo hàm cấp một tương đương với giao điểm của đạo hàm cấp hai và trục hoành, điểm này còn được gọi là điểm về không (zero crossing).</p>
+<figure>
+<p><img alt="First_Derivative_and_Second_Derivative_of_Edges" src="../research/edge-detection/images/First_Derivative_and_Second_Derivative_of_Edges.png" width="700" />
+    <figcaption markdown>
+    Hình 9: Đồ thị đầu tiên biểu diễn giá trị mức độ xám của mỗi pixel trong không gian 1 chiều (xem giá trị này là một hàm liên tục), đồ thị thứ hai là đạo hàm cấp một của giá trị này, đồ thị cuối cùng là đạo hàm cấp hai của giá trị này. Ảnh tham khảo <a href="http://csundergrad.science.uoit.ca/courses/cv-notes/notebooks/08-edge-detection.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<p>Có hai toán tử gắn với đạo hàm cấp hai trong không gian hai chiều: toán tử Laplacian (Laplacian operator) và toán tử đạo hàm cấp hai có hướng (second directional derivative)</p>
+<h4 id="41-toan-tu-laplacian">4.1. Toán tử Laplacian<a class="headerlink" href="#41-toan-tu-laplacian" title="Permanent link">&para;</a></h4>
+<p>Toán tử Laplacian được định nghĩa bằng tổng đạo hàm riêng cấp hai theo phương <span class="arithmatex">\(Ox\)</span> và <span class="arithmatex">\(Oy\)</span></p>
+<div class="arithmatex">\[
+\nabla^2f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}
+\]</div>
+<p>Trong đó đạo hàm cấp hai của <span class="arithmatex">\(f\)</span> theo phương <span class="arithmatex">\(Ox\)</span> được xấp xỉ như sau:</p>
+<div class="arithmatex">\[
+\begin{aligned} \frac{\partial^2 f}{\partial x^2} &amp; = \frac{\partial G_x}{\partial x} \\ &amp; = \frac{\partial f[i,j+1] - \partial f[i,j]}{\partial x} \\ &amp; = \frac{\partial f[i,j+1]}{\partial x} - \frac{\partial f[i,j]}{\partial x} \\ &amp; = (f[i,j+2] - f[i,j+1]) - (f[i,j+1] - f[i,j]) \\ &amp; = f[i,j+2] - 2f[i,j+1] + f[i,j] \\ \end{aligned}
+\]</div>
+<p>Tuy nhiên công thức trên cho ta xấp xỉ đạo hàm riêng cấp hai theo phương <span class="arithmatex">\(Ox\)</span> tại pixel có vị trí <span class="arithmatex">\([i,j+1]\)</span>, để tính đạo hàm này tại vị trí <span class="arithmatex">\([i,j]\)</span> ta thay <span class="arithmatex">\(j\)</span> bởi <span class="arithmatex">\(j-1\)</span>:</p>
+<div class="arithmatex">\[
+\begin{aligned} \frac{\partial^2 f}{\partial x^2} &amp; = f[i,j+1] - 2f[i,j] + f[i,j-1] \end{aligned}
+\]</div>
+<p>Tương tự, ta có đạo hàm riêng cấp 2 theo phương <span class="arithmatex">\(Oy\)</span> tại pixel có vị trí <span class="arithmatex">\([i,j]\)</span>:</p>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial y^2} = f[i+1,j] - 2f[i,j] + f[i-1,j]
+\]</div>
+<p>Tổng hai giá trị trên cho ta toán tử Laplacian. Ta có kernel tích chập của toán tử này như sau:</p>
+<div class="arithmatex">\[
+\nabla^2 \approx \begin{bmatrix} 0 &amp; 1 &amp; 0 \\ 1 &amp; -4 &amp; 1 \\ 0 &amp; 1 &amp; 0\end{bmatrix}
+\]</div>
+<p>Sau khi dùng kernel để tính toán giá trị Laplacian của mỗi pixel trong ảnh, toán tử Laplacian sẽ nhận diện một pixel là cạnh nếu qua nó có sự chuyển hóa qua điểm không. Không phải bất kì pixel nào mang giá trị 0 cũng được nhận diện là cạnh, ví dụ những vùng có các pixel đều mang giá trị 0 (trivial zeros) thì không được nhận diện là cạnh.</p>
+<p>Từ các công thức trên và kernel tích chập của toán tử Laplacian, ta nhận thấy rằng tuy được định nghĩa dựa trên đạo hàm riêng theo phương <span class="arithmatex">\(Ox\)</span> và <span class="arithmatex">\(Oy\)</span>, toán tử Laplacian là một đạo hàm vô hướng. Nghĩa là nếu ta tính giá trị Laplacian tại một pixel nhất định, nếu ta xoay bức ảnh 2D xung quanh pixel này theo bất kì chiều nào thì giá trị Laplacian này vẫn không thay đổi (điều này là không đúng đối với đạo hàm cấp hai có hướng mà ta sẽ đề cập đến ở phần tiếp theo).</p>
+<h4 id="42-ao-ham-cap-hai-co-huong">4.2. Đạo hàm cấp hai có hướng<a class="headerlink" href="#42-ao-ham-cap-hai-co-huong" title="Permanent link">&para;</a></h4>
+<p>Đạo hàm cấp hai có hướng là đạo hàm cấp hai được tính theo hướng của gradient. Sử dụng đạo hàm cấp hai có hướng khác với sử dụng Laplacian ở chỗ, nếu như Laplacian nhận một điểm là cạnh nếu như đạo hàm cấp một của nó theo phương <span class="arithmatex">\(Ox\)</span> và <span class="arithmatex">\(Oy\)</span> đều đạt cực trị, thì đạo hàm cấp hai có hướng sẽ nhận một điểm là cạnh nếu như nó là điểm về không đối với đạo hàm cấp hai theo hướng vuông góc với hướng của cạnh (hướng gradient).</p>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial n^2} = \frac{f_x^2f_{xx} + 2f_xf_yf_{xy} + f_y^2f_{yy}}{f_x^2 + f_y^2}
+\]</div>
+<p>Phần chứng minh dưới đây dành cho bạn đọc muốn hiểu thêm về công thức trên, không liên quan đến những phần khác nên hoàn toàn có thể được bỏ qua.</p>
+<dl>
+<dt><em><u>Chứng minh</u></em></dt>
+<dd>
+<p>Gradient tại điểm <span class="arithmatex">\((x,y)\)</span>: <span class="arithmatex">\(\nabla f = (f_x, f_y)\)</span></p>
+<p>Vector đơn vị của vector gradient tại điểm <span class="arithmatex">\((x,y)\)</span>: <span class="arithmatex">\(\overrightarrow{n}_0 = \frac{1}{\sqrt{f_x^2 + f_y^2}}(f_x,f_y)\)</span></p>
+<p>Đạo hàm cấp một của hàm <span class="arithmatex">\(f\)</span> tại điểm <span class="arithmatex">\((x,y)\)</span> theo hướng của vector <span class="arithmatex">\(\overrightarrow{n}\)</span>:</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial n} = \nabla f \cdot \overrightarrow{n}_0 = f_x \cdot \frac{f_x}{\sqrt{f_x^2+f_y^2}} + f_y \cdot \frac{f_y}{\sqrt{f_x^2 + f_y^2}} = \sqrt{f_x^2 + f_y^2}
+\]</div>
+<p>Đạo hàm cấp hai của hàm <span class="arithmatex">\(f\)</span> tại điểm <span class="arithmatex">\((x,y)\)</span> theo hướng của vector <span class="arithmatex">\(\overrightarrow{n}\)</span>:</p>
+<div class="arithmatex">\[
+\begin{aligned} \frac{\partial^2 f}{\partial n^2} &amp; = \frac{\partial \left(\sqrt{f_x^2+f_y^2}\right)}{\partial n} \\ &amp; = \frac{f_xf_{xx}+f_yf_{xy}}{\sqrt{f_x^2+f_y^2}} \cdot \frac{f_x}{\sqrt{f_x^2+f_y^2}} + \frac{f_xf_{xy}+f_yf_{yy}}{\sqrt{f_x^2+f_y^2}} \cdot \frac{f_y}{\sqrt{f_x^2+f_y^2}} \\ &amp; = \frac{f_x^2f_{xx} + 2f_xf_yf_{xy} + f_y^2f_{yy}}{f_x^2+f_y^2} \end{aligned}
+\]</div>
+</dd>
+</dl>
+<p>Tuy mang lại kết quả tốt trong trường hợp lý tưởng, các toán tử liên quan đến đạo hàm cấp hai lại hiếm khi được sử dụng bởi chúng rất dễ bị ảnh hưởng bởi nhiễu: chỉ một dao động nhỏ của đạo hàm cấp một tạo thành một đỉnh sẽ dẫn đến sự tạo thành một điểm về không của đạo hàm cấp hai. Để giảm sự ảnh hưởng của nhiễu, người ta dùng các bộ lọc nhiễu (filter) mà nổi bật là Gaussian filter. Trong phần tiếp theo, chúng ta sẽ cùng nhau tìm hiểu về hướng tiếp cận kết hợp Gaussian filter và toán tử Laplacian, đồng thời sử dụng định lý đạo hàm của phép tích chập (Derivative Theorem of Convolution) để rút gọn các bước tính toán của thuật toán này.</p>
+<h2 id="5-phuong-phap-tim-canh-tren-anh-nhieu">5. Phương pháp tìm cạnh trên ảnh nhiễu<a class="headerlink" href="#5-phuong-phap-tim-canh-tren-anh-nhieu" title="Permanent link">&para;</a></h2>
+<h4 id="51-anh-huong-cua-nhieu-en-ao-ham">5.1. Ảnh hưởng của nhiễu đến đạo hàm<a class="headerlink" href="#51-anh-huong-cua-nhieu-en-ao-ham" title="Permanent link">&para;</a></h4>
+<p>Để có thể hình dung rõ ràng hơn về tầm ảnh hưởng của nhiễu đến bài toán nhận diện cạnh, chúng ta hãy cùng nhau quan sát bức hình dưới đây. Lưu ý rằng chúng ta đang giả sử bức ảnh ta đang xét là 1D.</p>
+<figure>
+<p><img alt="Effect_of_Noise_a" src="../research/edge-detection/images/Effect_of_Noise_a.png" width="700" />
+    <figcaption markdown>
+    Hình 10: Hình 1, 2: Đồ thị biểu diễn một cạnh và đạo hàm cấp một của của nó. Hình 3, 4: Đồ thị biểu diễn cạnh tương ứng đã được thêm nhiễu và đạo hàm cấp một của nó. Ảnh tham khảo <a href="https://cs.brown.edu/people/pfelzens/engn1610/edge-pics.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<p>Ta thấy rằng với sự xuất hiện của nhiễu, ta không thể xác định đâu là vị trí của cạnh dựa trên đồ thị đạo hàm nữa.</p>
+<p>Để khắc phục tình trạng này, ta sử dụng Gaussian filter để loại bỏ nhiễu trước khi tính đạo hàm. Kết quả thu được khả quan hơn rất nhiều:</p>
+<figure>
+<p><img alt="Effect_of_noise_b" src="../research/edge-detection/images/Effect_of_noise_b.png" width="700" />
+    <figcaption markdown>
+    Hình 11: Đồ thị biểu diễn cạnh sau khi được khử nhiễu bởi Gaussian filter và đạo hàm cấp một của nó. Ảnh tham khảo <a href="https://cs.brown.edu/people/pfelzens/engn1610/edge-pics.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<h4 id="52-ao-ham-cua-gaussian-derivative-of-gaussian">5.2. Đạo hàm của Gaussian (Derivative of Gaussian)<a class="headerlink" href="#52-ao-ham-cua-gaussian-derivative-of-gaussian" title="Permanent link">&para;</a></h4>
+<p>Một cách tự nhiên, ta rút ra quy trình tìm đạo hàm của bức ảnh như sau: dùng Gaussian kernel để thực hiện phép tích chập lên ảnh đang bị nhiễu, sau đó tính đạo hàm đối với bức ảnh đã được khử nhiễu.</p>
+<figure>
+<p><img alt="Derivative_Theorem_of_Convolution" src="../research/edge-detection/images/Derivative_Theorem_of_Convolution.png" width="700" />
+    <figcaption markdown>
+    Hình 12: Các bước của một bài toán nhận diện cạnh đối với ảnh nhiễu (Cách 1: Lấy đạo hàm của ảnh sau khi đã áp dụng Gaussian filter cho ảnh). Ảnh tham khảo <a href="http://vision.stanford.edu/teaching/cs131_fall1718/files/05_edges.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<p>Tuy nhiên, ta có thể rút gọn quy trình này bằng cách lấy đạo hàm của Gaussian kernel để tạo thành một kernel mới, sau đó dùng phép tích chập đối với kernel này và bức ảnh gốc (có chứa nhiễu). Quy trình này giúp ta tiết kiệm một lượng lớn thời gian vì thông thường kích thước của bức ảnh lớn hơn kích thước của kernel rất nhiều. Một trường hợp mà việc lấy đạo hàm của Gaussian kernel đặc biệt hữu dụng đó là khi ta muốn áp dụng kernel này cho nhiều bức ảnh khác nhau.</p>
+<figure>
+<p><img alt="Derivative_Theorem_of_Convolution_b" src="../research/edge-detection/images/Derivative_Theorem_of_Convolution_b.png" width="700" />
+    <figcaption markdown>
+    Hình 13: Các bước của một bài toán nhận diện cạnh đối với ảnh nhiễu (Cách 2: Lấy đạo hàm của Gaussian kernel, sau đó mới áp dụng kernel này cho ảnh). Ảnh tham khảo <a href="http://vision.stanford.edu/teaching/cs131_fall1718/files/05_edges.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<p>Việc rút gọn này dựa trên tính tuyến tính của phép tích chập (chúng ta sẽ không đi sâu vào chứng minh công thức này), cụ thể:</p>
+<div class="arithmatex">\[
+\frac{d}{dx}(g*f) = \left(\frac{d}{dx}g\right)*f
+\]</div>
+<h4 id="53-laplacian-cua-gaussian-laplacian-of-gaussian-log">5.3. Laplacian của Gaussian (Laplacian of Gaussian - LoG)<a class="headerlink" href="#53-laplacian-cua-gaussian-laplacian-of-gaussian-log" title="Permanent link">&para;</a></h4>
+<p>Tương tự như khi lấy đạo hàm cấp một, ta cũng có thể dùng bộ lọc Gaussian để khử nhiễu trước khi áp dụng toán tử Laplacian lên ảnh, quy trình này cũng có thể rút gọn thành hai bước như trên:</p>
+<ol>
+<li>Áp dụng toán tử Laplacian lên Gaussian kernel để tạo thành kernel mới, kernel này còn được gọi là Laplacian của Gaussian (Laplacian of Gaussian hay LoG)</li>
+<li>Thực hiện phép tích chập đối với kernel mới tạo thành và ảnh gốc (chưa khử nhiễu)</li>
+</ol>
+<p>Việc rút gọn này cũng dựa trên một tính chất của phép tích chập:</p>
+<div class="arithmatex">\[
+\nabla^2(g*f) = \nabla^2g*f
+\]</div>
+<dl>
+<dd>
+<p>Trong đó $ g $ là một hàm Gaussian hai biến số</p>
+<div class="arithmatex">\[
+g(x,y) = \frac{1}{{2\pi}\sigma^2}e^{-\frac{x^2+y^2}{2\sigma^2}}
+\]</div>
+</dd>
+</dl>
+<p>Suy ra</p>
+<div class="arithmatex">\[
+\begin{aligned} \nabla^2g(x,y) &amp; = \frac{1}{2 \pi \sigma^2}(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2})e^{-\frac{x^2+y^2}{2 \sigma^2}} + \frac{1}{2 \pi \sigma^2}(\frac{y^2}{\sigma^4} - \frac{1}{\sigma^2})e^{-\frac{x^2+y^2}{2 \sigma^2}} \\ &amp; = -\frac{1}{\pi \sigma^4}\left( 1 -\frac{x^2 + y^2}{2 \sigma^2}\right)e^{-\frac{x^2+y^2}1{2\sigma^2}}\end{aligned}
+\]</div>
+<p>Thuật toán trên được gọi là Laplacian of Gausian (LoG) hay Marr-Hildreth detector (thuật toán được đề xuất bởi D. Marr và E. Hildreth vào năm 1980). Toán tử LoG còn được gọi là toán tử Mexican Hat vì hình dạng đặc biệt của nó:</p>
+<figure>
+<p><img alt="Mexican_Hat" src="../research/edge-detection/images/Mexican_Hat.png" width="500" />
+    <figcaption markdown>
+    Hình 14: Hình dạng của Gaussian kernel sau khi được áp dụng toán tử Laplacian giống như một chiếc mũ. Ảnh tham khảo <a href="https://hannibunny.github.io/orbook/preprocessing/04gaussianDerivatives.html">tại đây</a>.
+    </figcaption></p>
+</figure>
+<h2 id="6-canny-edge-detector">6. Canny Edge Detector<a class="headerlink" href="#6-canny-edge-detector" title="Permanent link">&para;</a></h2>
+<p>Được phát triển bởi John F. Canny vào năm 1986, thuật toán Canny Edge Detection cho đến nay vẫn là một trong những thuật toán nhận diện cạnh được sử dụng phổ biến nhất vì tính hiệu quả của nó.</p>
+<p>Trước khi đi vào thuật toán cụ thể, chúng ta cùng nhau tìm hiểu một vài khái niệm nhé!</p>
+<h4 id="61-non-maxima-suppression">6.1. Non-maxima suppression<a class="headerlink" href="#61-non-maxima-suppression" title="Permanent link">&para;</a></h4>
+<p>Như chúng ta đã biết, việc sử dụng đạo hàm cấp một cho bài toán nhận diện cạnh đòi hỏi ta phải xác định một ngưỡng nhất định để nhận diện một pixel với độ lớn gradient bất kì có là cạnh hay không. Đây là công việc khá đau đầu bởi nếu chọn một ngưỡng thấp, sẽ có rất nhiều pixel được nhận diện là cạnh, đặc biệt ở những nơi mà sự thay đổi đạo hàm diễn ra một cách từ từ do cạnh đã bị làm mờ khi lọc nhiễu hoặc do hạn chế nhất định của các loại máy ảnh. Nhưng nếu chọn một ngưỡng cao, ta sẽ bị mất rất nhiều pixel lẽ ra phải được dự đoán là cạnh. Bạn đọc có thể tham khảo bức hình bên dưới.</p>
+<figure>
+<p><img alt="Where_is_the_Edge" src="../research/edge-detection/images/Where_is_the_Edge.png" width="500" />
+    <figcaption markdown>
+    Hình 15: Ảnh thu được sau khi tính toán độ lớn gradient của từng pixel trong ảnh gốc. Ảnh tham khảo <a href="https://cs.brown.edu/people/pfelzens/engn1610/edge-pics.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<p>Trong bài toán nhận diện cạnh thì việc xác định chính xác vị trí của cạnh là cần thiết. Trong bức ảnh trên, chúng ta không biết phải chọn ngưỡng như thế nào để vừa có thể thu hẹp được độ rộng của cạnh, vừa tránh không để bị mất cạnh ở những nơi khác.</p>
+<p>Ở trên chúng ta đã tìm hiểu một toán tử giúp nhận diện cạnh chỉ tại những vị trí mà độ lớn gradient đạt cực đại, đó là toán tử Laplacian, tuy nhiên toán tử này rất dễ bị ảnh hưởng bởi nhiễu: chỉ một dao động nhỏ trong đạo hàm cấp một cũng tạo thành điểm về không trong đạo hàm cấp hai. Một kĩ thuật khác cũng giúp ta giải quyết được vấn đề này đó là Non-maxima suppression. Non-maxima suppression tận dụng thêm một thông tin nữa: hướng của gradient (ở phần trên, ta biết rằng tại mỗi pixel ta đều tính được độ lớn và hướng của gradient). Từ đó kết quả thu được từ non-maxima suppression ít nhiễu hơn kết quả từ Laplacian bởi nó không lấy cực đại của độ lớn gradient theo mọi hướng mà chỉ theo một hướng nhất định, hay nói cách khác, thuật toán này không lấy các điểm về không theo mọi hướng mà chỉ theo một hướng duy nhất đối với mỗi pixel: hướng của gradient, hay hướng vuông góc với hướng của "cạnh" đang xét.</p>
+<p>Hình dưới đây giúp ta hình dung rõ hơn về thuật toán này:</p>
+<figure>
+<p><img alt="Nonmaxima_Suppressioin" src="../research/edge-detection/images/Nonmaxima_Suppressioin.png" width="700" />
+    <figcaption markdown>
+    Hình 16: Ví dụ về thuật toán non-maxima suppression. Pixel ở vị trí chấm xanh trong hình thứ nhất được giữ lại để xét cạnh, pixel tương ứng trong hình thứ hai thì không. Ảnh tham khảo <a href="http://csundergrad.science.uoit.ca/courses/cv-notes/notebooks/08-edge-detection.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<p>Ở trường hợp đầu tiên, pixel ta đang xét có giá trị độ lớn gradient đạt cực đại theo hướng gradient của pixel này (ta có thể biết giá trị này có đạt cực đại hay không bằng cách so sánh pixel này với hai pixel lân cận theo hướng tương ứng). Vì thế, ta giữ lại pixel này, để ý rằng giá trị tại pixel này không đổi trước và sau nonmaxima suppression. Ở trường hợp thứ hai, do pixel này có giá trị độ lớn gradient nhỏ hơn pixel bên phải của nó theo hướng gradient, nên ta không giữ lại pixel này cho bước tiếp theo. Sau non-maxima suppression, giá trị của pixel này được đặt về 0. Lưu ý rằng thuật toán non-maxima suppression chỉ cho đầu ra là liệu một pixel có được tiếp tục giữ lại để xét là cạnh hay không, nó không đảm bảo các pixel được giữ lại thì chắc chắn là cạnh.</p>
+<figure>
+<p><img alt="Non-maxima-suppression-result" src="../research/edge-detection/images/Non-maxima-suppression-result.png" width="700" />
+    <figcaption markdown>
+    Hình 17: Ảnh thu được trước và sau non-maxima suppression. Ảnh tham khảo <a href="http://csundergrad.science.uoit.ca/courses/cv-notes/notebooks/08-edge-detection.pdf">tại đây</a>.
+    </figcaption></p>
+</figure>
+<h4 id="62-hysteresis-thresholding">6.2. Hysteresis thresholding<a class="headerlink" href="#62-hysteresis-thresholding" title="Permanent link">&para;</a></h4>
+<p>Quay lại vấn đề chọn ngưỡng: việc chọn một ngưỡng cao hay thấp luôn là một sự đánh đổi giữa số lượng cạnh là false positives và false negatives mà ta sẽ thu được. Thuật toán hysteresis thresholding được đưa ra nhằm giúp ta giải quyết vấn đề này.</p>
+<p>Ý tưởng của hysteresis thresholding là ta sẽ chọn 2 ngưỡng thay vì 1 ngưỡng: các pixel có giá trị nằm trên ngưỡng cao thì chắc chắn là cạnh (sure-edge pixel), các pixel có giá trị nằm dưới ngưỡng thấp thì chắc chắn không là cạnh. Sau đó ta bắt đầu xét các pixel nằm giữa hai ngưỡng này, những pixel nào là lân cận của các "sure-edge pixel" sẽ được nhận diện là cạnh, điều ngược lại đối với những pixel không là lân cận của "sure-edge pixel" nào cả.</p>
+<figure>
+<p><img alt="Hysteresis_Thresholding" src="../research/edge-detection/images/Hysteresis_Thresholding.png" width="500" />
+    <figcaption markdown>
+    Hình 18: Ví dụ về thuật toán hysteresis thresholding. Ảnh tham khảo <a href="https://theailearner.com/tag/hysteresis-thresholding/">tại đây</a>.
+    </figcaption></p>
+</figure>
+<p>Quan sát hình trên, ta thấy rằng A và B chắc chắn là cạnh vì giá trị của chúng cao hơn ngưỡng trên, D chắc chắn không là cạnh vì giá trị của nó thấp hơn ngưỡng dưới, C và E có giá trị nằm giữa hai ngưỡng, tuy nhiên C là cạnh do nó là lân cận của B, còn E thì không.</p>
+<p>Chúng ta cùng so sánh thuật toán hysteresis thresholding với cách chọn ngưỡng thông thường:</p>
+<figure>
+<p><img alt="Hysteresis_thresholding_result" src="../research/edge-detection/images/Hysteresis_thresholding_result.png" width="700" />
+    <figcaption markdown>
+    Hình 19: Hình 1: Kết quả thu được khi áp dụng hysteresis thresholding. Hình 2: Kết quả thu được khi chỉ dùng một ngưỡng cao. Hình 3: Kết quả thu được khi chỉ dùng một ngưỡng thấp.
+    </figcaption></p>
+</figure>
+<p>Ta thấy rằng thuật toán hysteresis thresholding vừa đảm bảo không bị nhận diện thiếu quá nhiều cạnh như trong hình thứ hai, vừa giảm thiểu nhiễu như trong hình thứ ba.</p>
+<h4 id="63-thuat-toan-canny-edge-detection">6.3. Thuật toán Canny Edge Detection<a class="headerlink" href="#63-thuat-toan-canny-edge-detection" title="Permanent link">&para;</a></h4>
+<dl>
+<dt>📐 <em><strong><u>Thuật toán:</u></strong></em></dt>
+<dd>
+<ol>
+<li>Dùng bộ lọc Gaussian để lọc nhiễu</li>
+<li>Xấp xỉ độ lớn gradient và hướng của gradient cho từng pixel trong ảnh</li>
+<li>Dùng non-maxima suppresion để "làm mỏng" cạnh, tức loại bỏ các pixel không cần thiết</li>
+<li>Dùng hysteresis thresholding để nhận diện cạnh</li>
+</ol>
+</dd>
+</dl>
+<figure>
+<p><img alt="Canny_Edge_Detector_result" src="../research/edge-detection/images/Canny_Edge_Detector_result.png" width="700" />
+    <figcaption markdown>
+    Hình 20: Kết quả thu được của thuật toán Canny Edge Detection đối với các cách chọn ngưỡng khác nhau. Hình 1: Kết quả thu được sau khi tính toán độ lớn gradient (ảnh được sử dụng để phân ngưỡng). Hình 2, 3, 4: Kết quả thu được sau khi áp dụng hysteresis thresholding với các ngưỡng <span class="arithmatex">\(T_1\)</span>, <span class="arithmatex">\(T_2\)</span> khác nhau.
+    </figcaption></p>
+</figure>
+<p>Một số lưu ý:</p>
+<ul>
+<li>Để có thể tiến hành bước 4: dùng một ngưỡng để quyết định xem một pixel bất kì có là cạnh hay không, ta cần giữ lại giá trị độ lớn gradient của mỗi pixel ở bước 3.</li>
+<li>Đến đây nếu bạn đọc thắc mắc rằng vì sao lại cần bước thresholding ở cuối khi bức ảnh thu được sau khi dùng non-maxima suppression đã cho ra hình dáng cạnh như ta mong muốn, bạn có thể xem lại phần 2 mục 3, không những thế, kĩ thuật đặc biệt của hysteresis thresholding còn góp phần giảm đi một lượng nhiễu đáng kể (do nhiễu thường rời rạc, không "kết nối" với nhau).</li>
+<li>Ở thuật toán non-maxima suppression, thay vì so sánh giá trị độ lớn gradient một pixel với hai pixel lân cận để giữ lại pixel có giá trị cực đại, ta cũng có thể dùng toán tử Laplacian nhưng theo một chiều (chiều của gradient) hoặc đạo hàm cấp hai có hướng và giữ lại pixel ở vị trí về không.</li>
+</ul>
+<h2 id="7-ket-luan">7. Kết luận<a class="headerlink" href="#7-ket-luan" title="Permanent link">&para;</a></h2>
+<p>Ở phần trên, chúng ta có đề cập đến một khái niệm không dùng nhiều trong bài viết này, đó là contour. Đầu ra của bài toán nhận diện cạnh chỉ là các điểm cạnh rời rạc, mặc dù nhìn bằng mắt thường, ta có cảm giác như đó đã là các đường biên, vì mắt ta có khả năng tự "kết nối" các điểm rời rạc này với nhau. Nếu muốn thu được đường biên liên tục của vật thể, hoặc đánh thứ tự các điểm cạnh này để có thể nối chúng lại với nhau tạo thành một đường liền mạch, ta sẽ đến với một bài toán mới, đó là bài toán nhận diện đường biên (Boundary detection).</p>
+<p>Qua bài viết này, bạn đọc đã có một cái nhìn toàn cảnh về bài toán nhận diện cạnh, các khái niệm liên quan đến bài toán, các vấn đề thường gặp đối với bài toán này cũng như các thuật toán thông dụng được đề xuất. Việc cố gắng bao trùm về bề rộng chắc chắn sẽ khiến bài viết không đạt được tiêu chí về bề sâu, đồng thời một vài khái niệm cũng được đơn giản hóa, nhưng qua đó mình mong rằng bài viết sẽ cung cấp cho bạn đọc một hình dung nhất định về bài toán này, đồng thời khơi gợi sự tò mò, hứng thú của bạn đọc, để từ đó việc đào sâu vào các chủ đề nâng cao và thú vị khác cũng trở nên dễ dàng hơn (một số chủ đề cũng thú vị không kém trong bài toán nhận diện cạnh mà bạn đọc có thể tiếp tục tìm hiểu như: sự kết hợp giữa Fourier Transform và High-pass filter trong bài toán nhận diện cạnh, hay kĩ thuật Image approximation để xác định vị trí cạnh ở mức độ subpixel,...)</p>
+<h2 id="8-tham-khao">8. Tham khảo<a class="headerlink" href="#8-tham-khao" title="Permanent link">&para;</a></h2>
+<p><a name='ref_1'></a></p>
+<ol>
+<li>Jain, R., Kasturi, R., &amp; Schunck, B. G. (1995). <em>Machine vision</em> (Vol. 5, pp. 309-364). New York: McGraw-hill.</li>
+<li>
+<p><em>First Principles of Computer Vision</em>. (n.d.). <a href="https://fpcv.cs.columbia.edu/">https://fpcv.cs.columbia.edu/</a>
+<a name='ref_3'></a></p>
+</li>
+<li>
+<p><em>6.2. Phép Tích chập cho Ảnh — Đắm mình vào Học Sâu 0.14.4 documentation</em>. (n.d.). <a href="https://d2l.aivivn.com/chapter_convolutional-neural-networks/conv-layer_vn.html">https://d2l.aivivn.com/chapter_convolutional-neural-networks/conv-layer_vn.html</a>
+<a name='ref_4'></a></p>
+</li>
+<li>
+<p>Nalwa, V. S. (1994). <em>A guided tour of computer vision</em>. Addison-Wesley Longman Publishing Co., Inc.</p>
+</li>
+<li><em>OpenCV: Canny Edge Detection</em>. (n.d.). <a href="https://docs.opencv.org/3.4/da/d22/tutorial_py_canny.html">https://docs.opencv.org/3.4/da/d22/tutorial_py_canny.html</a></li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2025 13:44:00">May 5, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2025 13:44:00">May 5, 2025</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+<h2 id="__comments">Comments</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="TickLabVN/knowledge"
+        data-repo-id="R_kgDOKi0muQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOKi0muc4CaS0Y"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+        // Instruct Giscus to set theme
+        giscus.setAttribute("data-theme", theme)
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        var ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function () {
+            var palette = __md_get("__palette")
+            if (palette && typeof palette.color === "object") {
+                var theme = palette.color.scheme === "slate"
+                    ? "transparent_dark"
+                    : "light"
+
+                // Instruct Giscus to change theme
+                var frame = document.querySelector(".giscus-frame")
+                frame.contentWindow.postMessage(
+                    { giscus: { setConfig: { theme } } },
+                    "https://giscus.app"
+                )
+            }
+        })
+    })
+</script>
+
+        
+    </article>
+</div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <!-- Footer -->
+<footer class="md-footer">
+
+    <!-- Link to previous and/or next page -->
+    
+      
+        
+          
+        
+        <nav
+          class="md-footer__inner md-grid"
+          aria-label="Footer"
+          
+        >
+  
+          <!-- Link to previous page -->
+          
+  
+          <!-- Link to next page -->
+          
+            
+            <a
+              href="../git-workflow-in-practice/"
+              class="md-footer__link md-footer__link--next"
+              aria-label="Next: Git workflow in practice"
+            >
+              <div class="md-footer__title">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                <div class="md-ellipsis">
+                  Git workflow in practice
+                </div>
+              </div>
+              <div class="md-footer__button md-icon">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              </div>
+            </a>
+          
+        </nav>
+      
+    
+  
+    <!-- Further information -->
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-copyright">
+    
+    <div class="md-copyright__highlight">
+        Copyright &copy; 2024 TickLab. Made by Engineering team.
+    </div>
+    
+    
+</div>
+  
+        <!-- Social links -->
+        
+          <div class="md-social">
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/TickLabVN" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://www.facebook.com/ticklab.vn" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://www.youtube.com/@TickLab" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+    
+</div>
+        
+      </div>
+    </div>
+  </footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+<script src="../../assets/javascripts/custom.9c11c319.min.js"></script>
+
+  </body>
+</html>

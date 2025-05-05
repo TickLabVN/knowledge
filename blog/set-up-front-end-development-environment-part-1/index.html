@@ -1,0 +1,1969 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Summary of knowledge-sharing content during the research and project development process across departments at TickLab.">
+      
+      
+        <meta name="author" content="TickLab Viet Nam">
+      
+      
+        <link rel="canonical" href="https://ticklabvn.github.io/knowledge/blog/set-up-front-end-development-environment-part-1/">
+      
+      
+        <link rel="prev" href="../accelerating-monocular-depth-estimation-using-tensorrt/">
+      
+      
+        <link rel="next" href="../colmap-a-software-for-3d-spare--dense-reconstruction/">
+      
+      
+      <link rel="icon" href="../../assets/TickLab-logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Set up Front-end development environment (Part 1) - TickLab - Start here, go anywhere</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<link rel="stylesheet" href="../../assets/stylesheets/custom.00c04c01.min.css">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#set-up-front-end-development-environment-part-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TickLab - Start here, go anywhere" class="md-header__button md-logo" aria-label="TickLab - Start here, go anywhere" data-md-component="logo">
+      
+  <img src="../../assets/TickLab-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TickLab - Start here, go anywhere
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Set up Front-end development environment (Part 1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TickLabVN/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TickLabVN/knowledge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../challenges/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Challenges
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TickLab - Start here, go anywhere" class="md-nav__button md-logo" aria-label="TickLab - Start here, go anywhere" data-md-component="logo">
+      
+  <img src="../../assets/TickLab-logo.svg" alt="logo">
+
+    </a>
+    TickLab - Start here, go anywhere
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TickLabVN/knowledge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TickLabVN/knowledge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2023
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../category/engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Engineering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../category/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Research
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../challenges/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Challenges
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Challenges
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Engineering (CS)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Engineering (CS)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../challenges/csv-query-tool/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    CSV Query Tool
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            CSV Query Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/language-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Language description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1_3" id="__nav_3_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Timelines
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Timelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week3_n_week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3 &amp; Week 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/csv-query-tool/timelines/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/personal-finance-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Personal Finance App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/json-in-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JSON in C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#1-so-luoc-ve-cac-cong-cu-su-dung" class="md-nav__link">
+      <span class="md-ellipsis">
+        1. Sơ lược về các công cụ sử dụng
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#2-bat-au-voi-mot-vi-du-on-gian" class="md-nav__link">
+      <span class="md-ellipsis">
+        2. Bắt đầu với một ví dụ đơn giản
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#3-cai-at-va-cau-hinh-moi-truong-phat-trien" class="md-nav__link">
+      <span class="md-ellipsis">
+        3. Cài đặt và cấu hình môi trường phát triển
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+      <nav class="md-nav" aria-label="3. Cài đặt và cấu hình môi trường phát triển">
+        <ul class="md-nav__list">
+          
+          
+            <li class="md-nav__item">
+    <a href="#31-cai-at" class="md-nav__link">
+      <span class="md-ellipsis">
+        3.1. Cài đặt
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+          
+          
+          
+            <li class="md-nav__item">
+    <a href="#32-cau-hinh" class="md-nav__link">
+      <span class="md-ellipsis">
+        3.2. Cấu hình
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+          
+          
+        </ul>
+      </nav>
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#4-to-chuc-source-code" class="md-nav__link">
+      <span class="md-ellipsis">
+        4. Tổ chức source code
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#5-ket-luan" class="md-nav__link">
+      <span class="md-ellipsis">
+        5. Kết luận
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+        <li class="md-nav__item">
+    <a href="#6-tham-khao" class="md-nav__link">
+      <span class="md-ellipsis">
+        6. Tham khảo
+      </span>
+    </a>
+  
+    <!-- Table of contents list -->
+    
+  </li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+<div class="md-content md-content--post" data-md-component="content">
+
+    <!-- Sidebar -->
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+        <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner md-post">
+                <nav class="md-nav md-nav--primary">
+
+                    <!-- Back to overview link -->
+                    <div class="md-post__back">
+                        <div class="md-nav__title md-nav__container">
+                            <a href="../" class=" md-nav__link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                                <span class="md-ellipsis">
+                                    Back to index
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Post authors -->
+                    
+                    <div class="md-post__authors md-typeset">
+                        
+                        <div class="md-profile md-post__profile">
+                            <span class="md-author md-author--long">
+                                <a href="https://github.com/ngyngcphu">
+                                    <img src="https://avatars.githubusercontent.com/u/111476687?v=4" alt="Nguyễn Ngọc Phú" />
+                                    </a>
+                            </span>
+                            <span class="md-profile__description">
+                                <strong>
+                                    <a href="https://github.com/ngyngcphu">
+                                        Nguyễn Ngọc Phú
+                                        </a>
+                                </strong><br />
+                                Software developer
+                            </span>
+                        </div>
+                        
+                    </div>
+                    
+
+                    <!-- Post metadata -->
+                    <ul class="md-post__meta md-nav__list">
+                        <li class="md-nav__item md-nav__item--section">
+                            <div class="md-post__title">
+                                <span class="md-ellipsis">
+                                    Metadata
+                                </span>
+                            </div>
+                            <nav class="md-nav">
+                                <ul class="md-nav__list">
+
+                                    <!-- Post date -->
+                                    <li class="md-nav__item">
+                                        <div class="md-nav__link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                                            <time datetime="2023-11-18 00:00:00+00:00" class="md-ellipsis">November 18, 2023</time>
+                                        </div>
+                                    </li>
+
+                                    <!-- Post date updated -->
+                                    
+
+                                    <!-- Post categories -->
+                                    
+                                    <li class="md-nav__item">
+                                        <div class="md-nav__link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                                            <span class="md-ellipsis">
+                                                in
+                                                
+                                                <a href="../category/engineering/">Engineering</a></span>
+                                        </div>
+                                    </li>
+                                    
+
+                                    <!-- Post readtime -->
+                                    
+                                    
+                                    <li class="md-nav__item">
+                                        <div class="md-nav__link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                                            <span class="md-ellipsis">
+                                                
+                                                18 min read
+                                                
+                                            </span>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </nav>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Table of contents, if integrated -->
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Page content -->
+    <article class="md-content__inner md-typeset">
+        
+        
+  
+
+
+
+  
+  
+
+
+<h1 id="set-up-front-end-development-environment-part-1">Set up Front-end development environment (Part 1)<a class="headerlink" href="#set-up-front-end-development-environment-part-1" title="Permanent link">&para;</a></h1>
+<figure>
+<p><img alt="" src="../engineering/setupFrontend_P1/images/hero-image.png" width="300" /></p>
+</figure>
+<p>Bài viết này dựa trên những kinh nghiệm mà mình học được khi tham gia vào một dự án tại TickLab với vai trò là Front-end developer. Nội dung chia sẻ bao gồm việc cài đặt, cấu hình môi trường phát triển giao diện người dùng trên nền tảng web từ lúc project bắt đầu vào giai đoạn hiện thực và cách làm việc nhóm hiệu quả giữa các thành viên trong team để đảm bảo chất lượng mã nguồn. Bạn đọc tạo issue trên <a href="https://github.com/ngyngcphu/react-template">github repository</a> của mình nếu có bất cứ thắc mắc hay góp ý gì đến bài viết nhé.</p>
+<!-- more -->
+
+<h2 id="1-so-luoc-ve-cac-cong-cu-su-dung">1. Sơ lược về các công cụ sử dụng<a class="headerlink" href="#1-so-luoc-ve-cac-cong-cu-su-dung" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ReactJS là một thư viện JavaScript, được dùng để xây dựng giao diện người dùng linh hoạt và dễ tái sử dụng (<a href="https://react.dev/">https://react.dev/</a>).</li>
+<li>TailwindCSS là một framework CSS mạnh mẽ cho phép xây dựng giao diện nhanh chóng và dễ dàng (<a href="https://tailwindcss.com/">https://tailwindcss.com/</a>).</li>
+<li>Vite là một front-end build-tool nhanh và hiệu quả giúp tăng tốc quy trình phát triển (<a href="https://vitejs.dev/">https://vitejs.dev/</a>).</li>
+<li>Zustand là một thư viện quản lý trạng thái cho ReactJS, giúp việc quản lý trạng thái ứng dụng một cách đơn giản và dễ dàng (<a href="https://zustand-demo.pmnd.rs/">https://zustand-demo.pmnd.rs/</a>).</li>
+<li>TypeScript là một ngôn ngữ lập trình phổ biến, là một phiên bản mở rộng của JavaScript với hỗ trợ kiểu dữ liệu tĩnh, giúp giảm lỗi và nâng cao hiệu suất phát triển (<a href="https://www.typescriptlang.org/">https://www.typescriptlang.org/</a>).</li>
+<li>ESLint, Prettier, Lint-staged, Husky: Bộ công cụ kiểm tra và duy trì chất lượng mã nguồn trong quá trình phát triển phần mềm. Các công cụ này giúp đảm bảo mã nguồn tuân thủ các quy tắc và tiêu chuẩn viết mã, tạo ra mã dễ đọc, dễ bảo trì và dễ cộng tác.</li>
+</ul>
+<h2 id="2-bat-au-voi-mot-vi-du-on-gian">2. Bắt đầu với một ví dụ đơn giản<a class="headerlink" href="#2-bat-au-voi-mot-vi-du-on-gian" title="Permanent link">&para;</a></h2>
+<p>Mục tiêu của bài viết là giới thiệu cách cài đặt môi trường phát triển giao diện người dùng, không đi sâu vào việc hiện thực sản phẩm. Các bạn có thể tự mình hoàn thiện project nhỏ này dựa trên template mà chúng ta sẽ xây dựng.</p>
+<p>Giả sử bạn có một yêu cầu xây dựng giao diện của một ứng dụng quản lý trên nền tảng web hiển thị các project đã và đang được làm trong một công ty. Sau khi phân tích nghiệp vụ, có được các requirement như sau:</p>
+<ul>
+<li>Ứng dụng gồm 3 trang: trang đăng nhập, trang hiển thị tổng quan tất cả các project và trang hiển thị thông tin chi tiết của mỗi project.</li>
+<li>Ứng dụng phải bao gồm 4 thao tác cơ bản: tạo - xem - sửa - xóa.</li>
+<li>Ứng dụng phải tương thích trên các màn hình desktop, mobile.</li>
+</ul>
+<p>Tiếp theo, bạn cần tạo môi trường phát triển cho các developers trong team. Ở đây mình chỉ giới thiệu cách cài đặt các cấu hình cần thiết và tạo cấu trúc thư mục cho việc phát triển Front-end, các API từ Back-end sẽ được mock bằng cách đơn giản trả về chuỗi string mà không hiện thực chi tiết. </p>
+<h2 id="3-cai-at-va-cau-hinh-moi-truong-phat-trien">3. Cài đặt và cấu hình môi trường phát triển<a class="headerlink" href="#3-cai-at-va-cau-hinh-moi-truong-phat-trien" title="Permanent link">&para;</a></h2>
+<h3 id="31-cai-at">3.1. Cài đặt<a class="headerlink" href="#31-cai-at" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Vì chúng ta đang làm việc với Typescript nên cần phải có một runtime environment và một package manager. Mình chọn 2 công cụ phổ biến nhất là <strong>node.js</strong> và <strong>yarn.</strong> Các bạn vào trang chủ của node.js (<a href="https://nodejs.org/">https://nodejs.org</a>) để cài đặt node, một trình quản lý gói <strong>npm</strong> cũng được cài kèm với node. Bạn có thể sử dụng luôn npm để thay thế cho yarn nhưng yarn sử dụng cache hiệu quả hơn để lưu trữ các gói đã tải, giúp tiết kiệm thời gian và băng thông khi cài đặt lại. Cài đặt yarn bằng command line:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">npm</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="o">-</span><span class="nx">g</span><span class="w"> </span><span class="nx">yarn</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Kiểm tra lại các công cụ đã cài đặt:</p>
+<p><img alt="node-yarn" src="../engineering/setupFrontend_P1/images/node-yarn.png" /></p>
+</li>
+<li>
+<p>Tiếp theo, chúng ta cần một base template từ Vite, sử dụng command line sau:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">create</span><span class="w"> </span><span class="nx">vite</span><span class="w"> </span><span class="nx">react</span><span class="o">-</span><span class="nx">template</span><span class="w"> </span><span class="o">--</span><span class="nx">template</span><span class="w"> </span><span class="nx">react</span><span class="o">-</span><span class="nx">ts</span>
+</span></code></pre></div>
+<p>Ta sẽ có một thư mục <strong>react-template,</strong> xóa các file: App.css, .eslintrc.cjs. Cấu trúc thư mục như sau:</p>
+<p><img alt="structure-folder" src="../engineering/setupFrontend_P1/images/structure-folder.png" /></p>
+</li>
+</ul>
+<h3 id="32-cau-hinh">3.2. Cấu hình<a class="headerlink" href="#32-cau-hinh" title="Permanent link">&para;</a></h3>
+<p>Sau mỗi bước cấu hình, các bạn có thể xem lại cấu trúc thư mục tương ứng với từng commit của mình trên <a href="https://github.com/ngyngcphu/react-template">github</a> nhé.</p>
+<ol>
+<li>
+<p><strong>Cấu hình CSS framework</strong></p>
+<p>Chúng ta sử dụng TailwindCSS cho project. Tailwind được thiết kế theo nguyên tắc utility-first, bao gồm một tập hợp các class element sẵn có giúp cho việc phát triển front-end nhanh và linh hoạt. Sử dụng Tailwind một cách khéo léo, thậm chí không cần phải viết một file css thuần nào trong project cả, các bước cài đặt như sau:</p>
+<ul>
+<li>
+<p>Install <strong>tailwindcss</strong> qua yarn và tạo một <code>tailwind.config.js</code> file (lưu ý nên cài tailwindcss ở <strong>devDependencies</strong> của project vì các class element trong Tailwind sẽ được generate thành các file CSS tĩnh trước khi chạy trên trình duyệt):</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="nx">tailwindcss</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">tailwindcss</span><span class="w"> </span><span class="nx">init</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Thêm đường dẫn đến các file sử dụng tailwind trong <code>tailwind.config.js</code> :</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cm">/** @type {import(&#39;tailwindcss&#39;).Config} */</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;./index.html&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;./src/**/*.{js,ts,jsx,tsx}&#39;</span><span class="p">],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">extend</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Thêm các chỉ thị <code>@tailwind</code> cho từng layer của Tailwind vào tệp <code>index.css</code> để kích hoạt và sử dụng các lớp CSS đã được định nghĩa sẵn trong Tailwind CSS framework. Cụ thể, có ba lớp chính cần thêm chỉ thị <code>@tailwind</code>, tham khảo <a href="https://tailwindcss.com/docs/functions-and-directives">tại đây</a>, lưu ý xóa toàn bộ nội dung cũ trong file <code>index.css</code> và chỉ cần thêm 3 chỉ thị tailwind:</p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">base</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">components</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">utilities</span><span class="p">;</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Thử generate file CSS tĩnh từ 3 chỉ thị trong file <code>index.css</code>:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">tailwindcss</span><span class="w"> </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">css</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="nx">dist</span><span class="o">/</span><span class="nx">output</span><span class="p">.</span><span class="nx">css</span>
+</span></code></pre></div>
+<p>Ta sẽ thấy một folder <code>dist</code> xuất hiện chứa file <code>output.css</code> là một file CSS tĩnh được generate từ tailwind. Ta import <code>dist/output.css</code> vào file App.tsx, đồng thời xóa toàn bộ nội dung cũ và thay bằng đoạn code đơn giản sau:</p>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;../dist/output.css&#39;</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">h1</span><span class="w"> </span><span class="nx">className</span><span class="o">=</span><span class="s2">&quot;text-3xl font-bold underline&quot;</span><span class="o">&gt;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">      </span><span class="nx">Hello</span><span class="w"> </span><span class="nx">world</span><span class="o">!</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Thực thi command line <code>yarn dev</code>, mặc định yarn sử dụng port 5173 để host website của chúng ta ở local, mở trình duyệt web tại địa chỉ <code>localhost:5173</code> và đây là kết quả:</p>
+<p><img alt="basic-helloworld" src="../engineering/setupFrontend_P1/images/basic-helloworld.png" /></p>
+<p>Ta nhận thấy quá trình từ lúc viết các class tailwindcss đến lúc render ra được UI khá thủ công: phải generate ra file CSS tĩnh, sau đó import nó vào từng file code có sử dụng tailwindcss. Nếu project chúng ta có tầm 50 file code <code>.tsx</code> có sử dụng tailwindcss, ta phải import 50 lần dòng <code>import '../dist/output.tsx'</code>, nhưng không phải file nào cũng dùng toàn bộ các class đã được generate, điều này làm chậm quá trình tải trang và tạo ra các mã CSS không cần thiết. Thêm vào đó, các mã CSS do tailwindcss sinh ra có thể không tương thích với một vài trình duyệt cũ như Safari, Internet Explorer,…Chính vì vậy, ta cần phải sử dụng các CSS processor để tự động và tối ưu hóa quá trình này, hai CSS processor được sử dụng là <strong>postcss</strong> và <strong>autoprefixer</strong>. Cài đặt chúng ở devDependencies :</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="nx">postcss</span><span class="w"> </span><span class="nx">autoprefixer</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Thêm file <code>postcss.config.js</code> tại root folder với nội dung như sau:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nx">tailwindcss</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nx">autoprefixer</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Ta đã cấu hình taiwindcss và autoprefixer là các plugin của postcss, thêm class <code>text-red-500</code> vào đoạn code Hello world! ở trên, chạy lại lệnh <code>yarn dev</code> để thấy kết quả:</p>
+<p><img alt="custom-helloworld" src="../engineering/setupFrontend_P1/images/custom-helloworld.png" /></p>
+<p>Thậm chí chúng ta không cần chạy lệnh <code>yarn tailwindcss -i ./src/index.css -o ./dist/output.css</code> và  <code>import '../dist/output.css'</code> ở từng file có sử dụng tailwindcss, vite sẽ automate quá trình này dựa vào file <code>postcss.config.js</code>, xóa bỏ folder <code>dist</code> và bây giờ chỉ cần Ctrl+S sau mỗi lần cập nhật các class tailwindcss.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cấu hình Code Quality Toolset (eslint, prettier, lint-staged, husky)</strong></p>
+<p>Trong cùng một dự án, các thành viên trong nhóm có thể có cách viết mã riêng. Sử dụng bộ công cụ này giúp đảm bảo mọi người viết mã theo cùng một quy tắc, từ định dạng mã đến quy tắc viết mã. Điều này làm cho mã nguồn dễ đọc hơn và giảm nguy cơ có những sai sót đơn giản.</p>
+<ol>
+<li>
+<p><strong>Prettier</strong></p>
+<ul>
+<li>
+<p>Là một công cụ định dạng mã tự động và đồng nhất hóa cú pháp mã. Prettier giúp đảm bảo mã nguồn có cùng một cấu trúc, dấu cách và cú pháp, tạo ra mã đẹp và dễ đọc, tham khảo <a href="https://prettier.io/">tại đây</a>. Cài đặt <code>prettier</code> ở devDependencies:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="o">--</span><span class="nx">exact</span><span class="w"> </span><span class="nx">prettier</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Tạo file <code>.prettierrc</code> để cấu hình prettier với các rule cơ bản như sau:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="s2">&quot;printWidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w">      </span><span class="c1">// ensure that lines of code are no longer than 100 characters.</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="s2">&quot;singleQuote&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">    </span><span class="c1">// require Prettier to use single quotes (&#39;) instead of double quotes (&quot;) to wrap around strings.</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="s2">&quot;jsxSingleQuote&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// similar to the above, but applicable to JSX (JavaScript XML) as well.</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="s2">&quot;semi&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">           </span><span class="c1">// require Prettier to add semicolons (;) at the end of each line of code.</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="s2">&quot;tabWidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w">          </span><span class="c1">// specify that Prettier will use 2 spaces for each tab.</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="s2">&quot;bracketSpacing&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// add a space after the opening curly brace &#39;{&#39; and before the closing curly brace &#39;}&#39;.</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="s2">&quot;arrowParens&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;always&quot;</span><span class="p">,</span><span class="c1">// require Prettier to always place parentheses around the parameter of an arrow function.</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="s2">&quot;trailingComma&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="w"> </span><span class="c1">// specify that Prettier won&#39;t add a trailing comma in multi-line lists like arrays or objects.</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Tạo file <code>.prettierignore</code> để Prettier biết các file nào không cần định dạng:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">dist</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nx">node_modules</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kr">package</span><span class="o">*</span><span class="p">.</span><span class="nx">json</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="o">*</span><span class="p">.</span><span class="nx">lock</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="o">*</span><span class="p">.</span><span class="nx">yml</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="o">*</span><span class="p">.</span><span class="nx">md</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Ta định dạng file App.tsx bằng command line <code>yarn prettier ./src/App.tsx --write</code> hoặc thêm một script command cho toàn bộ project trong file package.json <code>"format": "prettier '**/*.{tsx,ts,js,json,md,yml,yaml}' --write"</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>ESLint</strong></p>
+<ul>
+<li>
+<p>Là một công cụ kiểm tra lỗi mã nguồn và quy tắc viết mã trong JavaScript và TypeScript, giúp phát hiện và sửa các lỗi cú pháp, logic và code convention trong mã nguồn, tham khảo <a href="https://eslint.org/">tại đây</a>. Cài đặt <code>eslint</code> cùng với <code>eslint-config-prettier</code> (dùng để tắt các quy tắc không cần thiết hoặc xung đột với prettier) và một plugin của eslint là <code>eslint-plugin-react-hooks</code> (dùng khi sử dụng các react hooks và cần tuân theo Rules of Hooks) và  ở devDependencies:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="nx">eslint</span><span class="w"> </span><span class="nx">eslint</span><span class="o">-</span><span class="nx">config</span><span class="o">-</span><span class="nx">prettier</span><span class="w"> </span><span class="nx">eslint</span><span class="o">-</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">react</span><span class="o">-</span><span class="nx">hooks</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Tạo file <code>.eslintrc</code> để cấu hình eslint, thêm các rules, biến môi trường và các plugins cơ bản sau:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="s2">&quot;parser&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;@typescript-eslint/parser&quot;</span><span class="p">,</span><span class="w">          </span><span class="c1">// specify that the TypeScript ESLint parser should be used to analyze TypeScript code.</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="s2">&quot;extends&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="s2">&quot;prettier&quot;</span><span class="p">,</span><span class="w">                                   </span><span class="c1">// integrate Prettier with ESLint for code formatting.</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="s2">&quot;plugin:@typescript-eslint/recommended&quot;</span><span class="p">,</span><span class="w">      </span><span class="c1">// provide recommended rules for TypeScript code from the @typescript-eslint plugin.</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="s2">&quot;plugin:react-hooks/recommended&quot;</span><span class="w">              </span><span class="c1">// provide recommended rules for using React hooks.</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="s2">&quot;plugins&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;@typescript-eslint&quot;</span><span class="p">],</span><span class="w">              </span><span class="c1">// configuration uses the @typescript-eslint plugin.</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span><span class="s2">&quot;parserOptions&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="s2">&quot;ecmaVersion&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2018</span><span class="p">,</span><span class="w">                          </span><span class="c1">// specify that the code is written in ECMAScript 2018 (ES9).</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="s2">&quot;sourceType&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span><span class="p">,</span><span class="w">                       </span><span class="c1">// indicate that the code is using modules (ES6 modules).</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="s2">&quot;project&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;./tsconfig.json&quot;</span><span class="w">                  </span><span class="c1">// specify the TypeScript project configuration file to use.</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">  </span><span class="s2">&quot;env&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span><span class="s2">&quot;node&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">                                 </span><span class="c1">// indicate that the code will run in a Node.js environment.</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">    </span><span class="s2">&quot;es6&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w">                                   </span><span class="c1">// indicate that ES6 (ECMAScript 2015) features are supported.</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">  </span><span class="s2">&quot;rules&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">    </span><span class="s2">&quot;@typescript-eslint/no-inferrable-types&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w">  </span><span class="c1">// turn off the rule that flags unnecessary type declarations in TypeScript.</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">    </span><span class="s2">&quot;@typescript-eslint/no-unused-vars&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w">       </span><span class="c1">// set the rule that enforces no-unused-vars to an error level.</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="w">    </span><span class="s2">&quot;@typescript-eslint/no-var-requires&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w">      </span><span class="c1">// turn off the rule that disallows the use of require in TypeScript files.</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">    </span><span class="s2">&quot;eqeqeq&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w">                             </span><span class="c1">// enforce strict equality (===) over loose equality (==) and sets it to an error level.</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Vì cấu hình project trong parserOptions nằm ở file <code>tsconfig.json</code> nên ta có những thay đổi ở file này để tương thích với ESLint như sau:</p>
+<ul>
+<li>Bỏ các Linting trong compilerOptions vì đã có ESLint.</li>
+<li>
+<p>Thay đổi đường dẫn file trong <code>include</code> để chỉ định Typescript Compiler chỉ cần biên dịch các file sau:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="s2">&quot;include&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;**/*.ts&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;**/*.tsx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;**/*.js&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;*.cjs&quot;</span><span class="p">]</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Thay đổi tên các đuôi <code>*.config.js</code> (tailwind.config.js, postcss.config.js) thành đuôi <code>*.config.cjs</code> (tailwind.config.cjs, postcss.config.cjs) cho phù hợp với các đường dẫn file trong mục <code>include</code> (đồng nghĩa với việc thay đổi syntax từ ESModule sang CommonJS).</p>
+</li>
+<li>
+<p>Một vài thay đổi khác đã được thực hiện trong compilerOptions nhưng không trình bày cụ thể tại đây, các bạn xem tại <a href="https://github.com/ngyngcphu/react-template/commit/d72437d8c64dd3b493cab238c00ed2680d6124c0">commit</a> này của mình trên github nhé.
+        - Tạo file <code>.eslintignore</code> để ESLint biết các file nào không cần kiểm tra:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">dist</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nx">node_modules</span>
+</span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Ta chạy eslint file App.tsx bằng command line <code>yarn eslint ./src/App.tsx --fix</code> hoặc thêm một script command cho toàn bộ project trong file package.json <code>"lint": "eslint '**/*.{tsx,ts,js}' --fix"</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Lint-staged</strong></p>
+<ul>
+<li>
+<p>Hai tool ở trên có thể đã đủ dùng cho chúng ta định dạng code, kiểm tra cú pháp, kiểm tra code convention nhưng có một nhược điểm. Đó là chúng đều chạy trên toàn bộ source code dù ta chỉ thay đổi duy nhất 1 file, gây tốn thời gian và resource của máy. Vì vậy, ta dùng thêm một tool nữa là <strong>lint-staged</strong>, tool này giới hạn phạm vi Prettier và ESLint chỉ trên những file nằm trong vùng <strong>staging</strong> của git (những file được <strong>git add</strong>), tham khảo <a href="https://github.com/okonet/lint-staged">tại đây</a>. Cài đặt <code>lint-staged</code> ở devDependencies:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="nx">lint</span><span class="o">-</span><span class="nx">staged</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Tạo file <code>.lintstagedrc.json</code> để giới hạn phạm vi của prettier và eslint:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="s2">&quot;**/*.{ts,js,tsx}&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;eslint --fix&quot;</span><span class="p">],</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="s2">&quot;**/*.{tsx,ts,js,json,md,yml,yaml}&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;prettier --write&quot;</span><span class="p">]</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="p">}</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Trước khi chạy lint-staged, ta phải đưa các file đã thay đổi vào staging của git, kết quả như sau:</p>
+<p><img alt="lint-staged" src="../engineering/setupFrontend_P1/images/lint-staged.png" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Husky</strong></p>
+<ul>
+<li>
+<p>Với lint-staged, ta có thể gộp 2 lần chạy prettier và eslint chỉ bằng một command line duy nhất là <code>yarn lint-staged</code> nhưng vẫn còn 1 vấn đề: Sẽ ra sao nếu có thành viên nào đó trong team quên chạy <code>yarn lint-staged</code> trước khi commit code? Điều này có thể phá vỡ code convention mà team đã xây dựng, khiến cho code trở nên rối loạn, làm chậm thời gian phát triển sản phẩm. Chính vì vậy, <strong>husky</strong> ra đời như là một giải pháp cho vấn đề này. Husky là một tool trigger các hành động được cài đặt trong git hooks, tham khảo <a href="https://typicode.github.io/husky/">tại đây</a>. Ta sẽ dùng husky để cấu hình pre-commit git hook cho lint-staged, đảm bảo chỉ cần các thành viên trong team commit code thì câu lệnh <code>yarn lint-staged</code> tự động được thực thi. Cài đặt <code>husky</code> ở devDependencies và install git hook:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="nx">husky</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">husky</span><span class="w"> </span><span class="nx">install</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Bạn sẽ thấy một thư mục <code>.husky</code> xuất hiện chứa 1 file tên là <code>husky.sh</code>, file này gồm các đoạn mã shell script mà husky sử dụng để thực hiện các hành động khi các git hooks được kích hoạt.</p>
+</li>
+<li>
+<p>Tạo một pre-commit git hook để trigger câu lệnh <code>yarn lint-staged</code> mỗi lần trước khi commit bằng command line sau:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">husky</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="p">.</span><span class="nx">husky</span><span class="o">/</span><span class="nx">pre</span><span class="o">-</span><span class="nx">commit</span><span class="w"> </span><span class="s1">&#39;yarn lint-staged&#39;</span>
+</span></code></pre></div>
+<p>Nếu có bất cứ lỗi gì vi phạm các luật của prettier và eslint thì commit sẽ bị chặn, đảm bảo chỉ có những đoạn code đúng quy tắc mới được push lên repository chung.</p>
+</li>
+<li>
+<p>Sau khi commit và push lên github, chỉ có duy nhất file <code>pre-commit</code> được push lên, file <code>husky.sh</code> đã được git ignore. Chính vì thế, ta sẽ thêm 1 script command <code>"prepare": "husky install"</code> trong package.json để tự động khởi tạo <code>husky.sh</code> khi chạy lệnh <code>yarn install</code> mà không cần các thành viên trong team phải setup lại khi pull code về.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>Việc bây giờ của các developer trong team là chỉ cần code và commit, mọi thứ liên quan đến coding convention và kiểm tra các lỗi syntax đã được automation bởi bộ công cụ ESLint, Prettier, Lint-staged và Husky.</p>
+</li>
+<li>
+<p><strong>Cấu hình một thư viện UI kết hợp ReactJS và TailwindCSS</strong></p>
+<p>Lý do chúng ta có bước này bởi vì rất khó để các developer nhớ và sử dụng một hệ thống các class element khổng lồ trong TailwindCSS, cần phải có một <strong>wrapper library</strong> được xây dựng dựa trên TailwindCSS và có hỗ trợ ReactJS, mình chọn thư viện <strong>Material Tailwind</strong> cho project này, tham khảo tại (<a href="https://www.material-tailwind.com/">https://www.material-tailwind.com/</a>). Cài đặt <code>material-tailwind</code> ở dependencies:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="err">@</span><span class="nx">material</span><span class="o">-</span><span class="nx">tailwind</span><span class="o">/</span><span class="nx">react</span>
+</span></code></pre></div>
+<p>Sau khi cài đặt, ta cần cấu hình thêm file <code>tailwind.config.cjs</code> và <code>main.tsx</code> để tương thích với Material Tailwind, các bạn xem cụ thể tại <a href="https://github.com/ngyngcphu/react-template/commit/9b7c34181b0c031f18e096305cb16c5337a37ed0">commit</a> này của mình trên github nhé.</p>
+</li>
+</ol>
+<h2 id="4-to-chuc-source-code">4. Tổ chức source code<a class="headerlink" href="#4-to-chuc-source-code" title="Permanent link">&para;</a></h2>
+<p>Đối với một project, việc tổ chức source code một cách tường minh và rõ ràng là cực kỳ quan trọng, đặc biệt là khi kích cỡ project bắt đầu lớn dần và có thêm nhiều nhân sự tham gia vào, phải tối ưu được quá trình đọc hiểu của các developer trong team và hạn chế trùng lặp mã code. Dưới đây là một “pattern” mà team Engineer tại TickLab đã sử dụng trong quá trình phát triển sản phẩm, được minh họa qua ví dụ ở mục 2.2.  </p>
+<ul>
+<li>
+<p>Ta bắt đầu với yêu cầu thứ nhất: <strong>Ứng dụng gồm trang đăng nhập, trang hiển thị tổng quan tất cả các project và trang hiển thị thông tin chi tiết của mỗi project.</strong> Do đó, ta cần một thư mục <code>src/pages</code> chứa tất cả các trang UI chính. Tạo 3 trang trong thư mục <code>pages</code>:</p>
+<ul>
+<li><code>AuthPage</code>: trang đăng nhập.</li>
+<li><code>ProjectGeneralPage</code>: trang hiển thị tổng quan tất cả các project.</li>
+<li><code>ProjectDetailPage</code>: trang hiển thị thông tin chi tiết của mỗi project.</li>
+</ul>
+<p>Mỗi page sẽ được phân chia thành từng component như button, table, navigation bar, search bar, pagination bar,…Các component này có thể được sử dụng lại nhiều lần trong một page hoặc được sử dụng giữa các page. Một thư mục <code>src/components</code> chịu trách nhiệm lưu giữ các component được tái sử dụng.</p>
+<p>Tùy vào bản design UI/UX của từng project nhưng thông thường layout của trang đăng nhập sẽ khác với layout của các trang còn lại. Do đó, ta sẽ tạo thư mục <code>src/layouts</code> bao gồm 2 layout chính: <code>AuthLayout.tsx</code> và <code>AppLayout.tsx</code>.</p>
+<p>Ta tạo thêm 2 thư mục <code>src/interfaces</code> và <code>src/types</code> để tạo thêm các cấu trúc đối tượng và kiểu dữ liệu tùy chỉnh cho project, cài đặt thêm package <code>@types/node</code> để được hỗ trợ các kiểu dữ liệu trong Node.js.</p>
+</li>
+<li>
+<p>Tiếp đến với yêu cầu thứ hai: <strong>Ứng dụng phải bao gồm 4 thao tác cơ bản: tạo - xem - sửa - xóa.</strong> Yêu cầu này đòi hỏi ứng dụng phải tương tác với các APIs từ phía back-end. Ta sẽ tạo một thư mục tên là <code>src/services</code> giữ các lời gọi API. Ở bước này, ta cần lưu ý vài vấn đề sau:</p>
+<ul>
+<li>Đặt URL của server vào một file tên là <code>.env</code>. Bởi trong một dự án thực tế, chúng ta sẽ làm việc với nhiều server khác nhau tùy thuộc vào từng giai đoạn phát triển, ví dụ <code>http://localhost:8080</code> ở môi trường Development, <code>https://staging.example.com</code> ở môi trường Staging và <code>https://api.example.com</code> ở môi trường Production. Chỉ cần thay đổi URL server trong file <code>.env</code> mà không cần phải sửa đổi source code.</li>
+<li>Đặt <code>.env</code> vào <code>.gitignore</code>, đồng thời tạo một file <code>.env.example</code> để cung cấp mẫu cho <code>.env</code> và được phép push file này lên repository chung. Điều này giúp các thành viên trong team nhận ra các biến môi trường được sử dụng trong dự án và có cách cài đặt phù hợp.</li>
+</ul>
+<p>Thông thường, các đoạn mã gọi API sẽ có logic giống nhau. Do đó, ta viết một hàm <code>invoke</code> để xử lý logic này và đặt nó vào file <code>services/common.ts</code>. Mình sẽ mock một back-end đơn giản để fake Authentication và CRUD APIs, logic được đặt trong thư mục <code>__mock_server__</code>(loại bỏ thư mục này khi bạn làm việc với các API thật). Các bạn xem implementation của hàm <code>invoke</code> và cách nó được sử dụng trong <code>authService</code> và <code>userService</code> tại <a href="https://github.com/ngyngcphu/react-template/commit/d1ec92bcb2a7c323666f59bef9a44078d09fb4b7">commit</a> này của mình trên github nhé.</p>
+<p>Ta có thể kết thúc việc setup folder ở bước này ngay tại đây đối với các project có khối lượng công việc nhỏ, chỉ giải quyết các nghiệp vụ đơn giản như đăng kí, đăng nhập, CRUD,…Sẽ có một vấn đề phát sinh khi khối lượng công việc tăng lên và đặc biệt là có thêm nhân sự tham gia vào dự án của bạn, đó chính là việc quản lý các global state. Nếu chỉ quản lý các state bằng việc sử dụng hook <code>useState</code> trong React và phương pháp <strong>Passing Props</strong> (truyền state từ component cha xuống component con) thì có thể ngoài bạn ra, không một ai có thể tham gia vào project đó được, hoặc sẽ mất rất nhiều thời gian để các thành viên khác trong team đọc hiểu source code. Điều này còn ảnh hưởng đến tính scalability của project khi phát triển các tính năng mới và hậu quả tệ nhất có thể xảy ra là phải “đập đi xây lại”, làm chậm thời gian release sản phẩm cho khách hàng. Chính vì vậy, vấn đề <strong>global state</strong> phải được giải quyết đầu tiên ngay tại bước setup môi trường development. Solution tương đối phổ biến trong hầu hết các project là sử dụng một <strong>State Management Library</strong>, các tool phổ biến gồm có Redux, Zustand. Ở đây, mình sử dụng Zustand vì kiến trúc thư viện này đơn giản hơn Redux với việc sử dụng các React Hook để quản lý các store độc lập, giúp truy cập vào state và các action dễ dàng hơn, tham khảo <a href="https://docs.pmnd.rs/zustand/getting-started/introduction">tại đây</a>. Cài đặt <code>zustand</code> ở dependencies:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="nx">zustand</span>
+</span></code></pre></div>
+<p>Tạo một thư mục <code>src/states</code> để lưu trữ các store. Đối với dữ liệu trả về từ API, ta xây dựng một flow call API như sau:</p>
+<p><img alt="flow-call-api" src="../engineering/setupFrontend_P1/images/flow-call-api.png" /></p>
+<p>Quy tắc trên đảm bảo các thành viên trong team hiểu rõ luồng thực thi của mã nguồn, tăng khả năng đọc hiểu và giảm thời gian fix bug. Xem back-end như bên cung cấp interface để tạo type cho dữ liệu trả về từ API. Gọi API trong services, sử dụng các types đã tạo. Tạo một store lưu trữ các state và action cho bộ APIs liên quan đến một feature của sản phẩm (Authentication, CRUD, Automatic Notification,…). Dùng các store này trong components và pages. Mình sẽ implement 2 stores: <code>useUserStore</code> và <code>useProjectGeneralStore</code> bao gồm state và action của bộ CRUD API. Các bạn xem cụ thể tại <a href="https://github.com/ngyngcphu/react-template/commit/9272fb345121c1d4b72137c607b44edd498767a7">commit</a> này của mình trên github nhé.</p>
+</li>
+<li>
+<p>Yêu cầu cuối cùng: <strong>Ứng dụng phải tương thích trên các màn hình desktop, mobile.</strong> Đây chính là tính năng responsive của sản phẩm. Nguyên lý thiết kế UI/UX trong việc design các ứng dụng web là <strong>mobile first</strong>, tức là từng module trong bản thiết kế phải tương thích trên điện thoại trước, sau đó mới scale dần lên các màn hình có kích thước lớn hơn như tablet, desktop,…TailwindCSS cũng tuân theo design principle này với hệ thống breakpoint bao gồm 5 breakpoints cơ bản: <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>. Tuy nhiên, đối với các components có sự thay đổi quá lớn khi chuyển đổi giữa các kích thước màn hình, việc sử dụng breakpoint có thể khó khăn hơn so với việc tạo ra các “version” mới. Do đó, ta sẽ tạo một hook tên là <code>useScreenSize</code> chịu trách nhiệm theo dõi sự thay đổi kích thước của màn hình (implement hook này trong thư mục <code>src/hooks</code> - đây là thư mục chứa tất cả các custom hooks mà chúng ta định nghĩa) và một enum <code>ScreenSize</code> chứa các loại màn hình trong thư mục <code>src/constants</code> (tất cả các constants trong project được đặt tại thư mục này) để hỗ trợ việc chuyển đổi giữa các version của component khi resize. Các bạn xem chi tiết implementation của <code>useScreenSize</code> và cách hook này được sử dụng ở <code>ProjectGeneralPage.tsx</code> tại <a href="https://github.com/ngyngcphu/react-template/commit/f0d82ea1c18f4a28fb6f36484ba87c36d186e9f9">commit</a> này.</p>
+<p>Bởi vì các hooks chỉ được phép gọi bên trong các function components và các custom hooks khác nên ta sẽ tạo thêm một thư mục <code>src/utils</code> để chứa các hàm xử lý các tác vụ bình thường.</p>
+</li>
+</ul>
+<p>Ta đã đi qua 3 requirements phổ biến nhất của hầu hết các ứng dụng thuộc loại Management Application để từ đó xây dựng nên một cấu trúc thư mục cho team Front-end developers. Bây giờ, hãy cùng nhìn lại toàn bộ source code và thấy rằng: Thay vì sử dụng các đường dẫn phức tạp, phải import riêng lẻ từng module mặc dù chúng cùng thuộc một thư mục, ta sẽ sử dụng <strong>path alias</strong> trong Typescript và phối hợp với một tool tự động “đóng gói” các đường dẫn vào 1 file <code>index.ts</code> trong từng thư mục là <code>barrelsby</code> (tham khảo <a href="https://github.com/bencoveney/barrelsby">tại đây</a>). Cài đặt <code>barrelsby</code> ở devDependencies:</p>
+<div class="language-jsx highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">yarn</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="nx">barrelsby</span>
+</span></code></pre></div>
+<p>Tạo file <code>.barrelsby.json</code> để xác định các thư mục cần đóng gói:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="p">{</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="s2">&quot;directory&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">      </span><span class="s2">&quot;./src/components&quot;</span><span class="p">,</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">      </span><span class="s2">&quot;./src/constants&quot;</span><span class="p">,</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">      </span><span class="s2">&quot;./src/hooks&quot;</span><span class="p">,</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">      </span><span class="s2">&quot;./src/interfaces&quot;</span><span class="p">,</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">      </span><span class="s2">&quot;./src/layouts&quot;</span><span class="p">,</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">      </span><span class="s2">&quot;./src/pages&quot;</span><span class="p">,</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">      </span><span class="s2">&quot;./src/services&quot;</span><span class="p">,</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">      </span><span class="s2">&quot;./src/states&quot;</span><span class="p">,</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">      </span><span class="s2">&quot;./src/utils&quot;</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="w">    </span><span class="s2">&quot;delete&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="w">  </span><span class="p">}</span>
+</span></code></pre></div>
+<p>Tạo một script command <code>"barrels": "barrelsby --config .barrelsby.json -q"</code> và thực thi bằng command line <code>yarn barrels</code>, file <code>index.ts</code> sẽ tự động xuất hiện trong các thư mục được chỉ định bởi <code>.barelsby.json</code>. Cấu hình thêm paths và resolve alias tương ứng trong <code>tsconfig.json</code> và <code>vite.config.ts</code> (cụ thể tại <a href="https://github.com/ngyngcphu/react-template/commit/615530d3d6ab086f33831f1350dd75d0e325fc47">commit</a>), Sau đó, ta có thể sử dụng các path alias để đơn giản hóa các thao tác import.</p>
+<h2 id="5-ket-luan">5. Kết luận<a class="headerlink" href="#5-ket-luan" title="Permanent link">&para;</a></h2>
+<p>Mình sẽ kết thúc phần 1 của bài viết này tại đây, tất cả các bước setup đều được lưu lại theo từng commit tương ứng trên <a href="https://github.com/ngyngcphu/react-template">github repository</a>. Ở phần 2, mình sẽ chia sẻ với các bạn cách setup môi trường container để deploy ứng dụng web lên một máy ảo (Virtual Private Server) sử dụng Docker Container và Nginx Web Server dựa trên template này. Đây là bước tiền đề để tạo nên workflows CI/CD của project.</p>
+<h2 id="6-tham-khao">6. Tham khảo<a class="headerlink" href="#6-tham-khao" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Responsve Design: <a href="https://tailwindcss.com/docs/responsive-design">https://tailwindcss.com/docs/responsive-design</a></li>
+<li>Sensor management web application: <a href="https://github.com/HPCMonitoring/sensor-manager">https://github.com/HPCMonitoring/sensor-manager</a></li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2025 13:44:00">May 5, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2025 13:44:00">May 5, 2025</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+<h2 id="__comments">Comments</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="TickLabVN/knowledge"
+        data-repo-id="R_kgDOKi0muQ"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOKi0muc4CaS0Y"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+        // Instruct Giscus to set theme
+        giscus.setAttribute("data-theme", theme)
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        var ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function () {
+            var palette = __md_get("__palette")
+            if (palette && typeof palette.color === "object") {
+                var theme = palette.color.scheme === "slate"
+                    ? "transparent_dark"
+                    : "light"
+
+                // Instruct Giscus to change theme
+                var frame = document.querySelector(".giscus-frame")
+                frame.contentWindow.postMessage(
+                    { giscus: { setConfig: { theme } } },
+                    "https://giscus.app"
+                )
+            }
+        })
+    })
+</script>
+
+        
+    </article>
+</div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <!-- Footer -->
+<footer class="md-footer">
+
+    <!-- Link to previous and/or next page -->
+    
+      
+        
+          
+        
+        <nav
+          class="md-footer__inner md-grid"
+          aria-label="Footer"
+          
+        >
+  
+          <!-- Link to previous page -->
+          
+            
+            <a
+              href="../accelerating-monocular-depth-estimation-using-tensorrt/"
+              class="md-footer__link md-footer__link--prev"
+              aria-label="Previous: Accelerating Monocular Depth Estimation using TensorRT"
+            >
+              <div class="md-footer__button md-icon">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              </div>
+              <div class="md-footer__title">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                <div class="md-ellipsis">
+                  Accelerating Monocular Depth Estimation using TensorRT
+                </div>
+              </div>
+            </a>
+          
+  
+          <!-- Link to next page -->
+          
+            
+            <a
+              href="../colmap-a-software-for-3d-spare--dense-reconstruction/"
+              class="md-footer__link md-footer__link--next"
+              aria-label="Next: COLMAP: A software for 3D Spare &amp;amp; Dense Reconstruction"
+            >
+              <div class="md-footer__title">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                <div class="md-ellipsis">
+                  COLMAP: A software for 3D Spare &amp; Dense Reconstruction
+                </div>
+              </div>
+              <div class="md-footer__button md-icon">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              </div>
+            </a>
+          
+        </nav>
+      
+    
+  
+    <!-- Further information -->
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-copyright">
+    
+    <div class="md-copyright__highlight">
+        Copyright &copy; 2024 TickLab. Made by Engineering team.
+    </div>
+    
+    
+</div>
+  
+        <!-- Social links -->
+        
+          <div class="md-social">
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/TickLabVN" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://www.facebook.com/ticklab.vn" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256"/></svg>
+    </a>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://www.youtube.com/@TickLab" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+    
+</div>
+        
+      </div>
+    </div>
+  </footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+<script src="../../assets/javascripts/custom.9c11c319.min.js"></script>
+
+  </body>
+</html>
