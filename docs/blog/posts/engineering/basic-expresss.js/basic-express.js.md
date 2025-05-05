@@ -10,7 +10,7 @@ toc_depth: 3
 # How to build basic Express.js from scratch [Part 1]
 <figure markdown>
 
-![](./images/hero.png){ width="300" }
+![](./images/hero.png){ width="300" } 
 </figure>
 
 Nếu bạn đã quen với việc tạo giao diện bằng HTML, CSS, JavaScript và bây giờ muốn xây dựng backend cho trang web của bạn thì Express.js chính là lựa chọn hoàn hảo. Trong bài viết này, chúng ta sẽ cùng nhau trải qua hành trình xây dựng một framework Express.js cơ bản từ con số 0. Qua quá trình thực hiện, bạn sẽ được tìm hiểu cách Express.js xử lý routing, middleware và các yêu cầu HTTP, giúp kết nối giao diện người dùng với hệ thống server một cách mượt mà và linh hoạt.
