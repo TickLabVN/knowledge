@@ -19,7 +19,7 @@ Ledis leverages vanilla JavaScript and HTML, requiring no external server or bui
 <!-- more -->
 
 ## I. Research phase
-
+ 
 ### 1. Research about Redis
 
 When I first received the assignment, I was anxious because I’d never used Redis before. Since it’s such a widely adopted technology, I watched a “Redis Crash Course” on YouTube and then read the official Redis documentation to understand the commands I needed to implement, studying each command’s input and output in various scenarios.
